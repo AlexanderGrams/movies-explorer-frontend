@@ -2,7 +2,7 @@
 @import url(./vendor/normalize.css);
 
 /* подключение шрифтов */
-/* @import url(./vendor/fonts/fonts.css); */
+@import url(./vendor/fonts/fonts.css);
 
 /* стили body */
 /* @import url(./blocks/body/body.css); */
