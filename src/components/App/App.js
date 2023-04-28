@@ -4,7 +4,7 @@ import Main from "../Main/Main";
 import "./app.sass"
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   return (
     <div className="page">

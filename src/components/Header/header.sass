@@ -1,5 +1,21 @@
 .header
   width: 100%
+  background: #202020
+  position: relative
+
+  &__lining
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    height: 100vh
+    background: #202020
+    z-index: 3
+    opacity: 0
+    transition: opacity 0.3s ease
+
+    &_type_active
+      opacity: 0
 
   &__wrap
     box-sizing: border-box
@@ -29,3 +45,6 @@
   .header__wrap
     margin: 0 14px
     padding: 18px 0
+
+  .header__lining_type_active
+    opacity: 0.7
