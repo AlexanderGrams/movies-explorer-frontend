@@ -1,9 +1,18 @@
-import style from "./app.module.sass"
+import { Routes, Route } from "react-router-dom";
+import { useState } from "react"
+import Main from "../Main/Main";
+import "./app.sass"
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
   return (
-    <div>
-      <h1 className={style.app}>hello world!</h1>
+    <div className="page">
+      <Routes>
+        <Route path="*" element={
+          <Main loggedIn={loggedIn}/>
+        }/>
+      </Routes>
     </div>
   );
 }
