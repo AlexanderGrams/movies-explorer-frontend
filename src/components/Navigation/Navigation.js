@@ -10,7 +10,8 @@ function Navigation({isActiveBurger, setIsActiveBurger}) {
   return (
     <>
       <nav className={isActiveBurger ? "nav nav_type_active" : "nav"}>
-        <div>
+        <div className="nav__wrap">
+          <NavLink to="/" className={({isActive}) => `nav__tab nav__tab_type_home ${isActive ? "nav__tab_type_action" : ""}`}>Главная</NavLink>
           <NavLink to="/movies" className={({isActive}) => `nav__tab ${isActive ? "nav__tab_type_action" : ""}`}>Фильмы</NavLink>
           <NavLink to="/saved-movies" className={({isActive}) => `nav__tab ${isActive ? "nav__tab_type_action" : ""}`}>Сохранённые фильмы</NavLink>
         </div>

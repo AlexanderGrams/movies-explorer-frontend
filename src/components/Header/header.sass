@@ -10,11 +10,12 @@
     right: 0
     height: 100vh
     background: #202020
-    z-index: 3
+    z-index: -5
     opacity: 0
-    transition: opacity 0.3s ease
+    transition: opacity 0.3s ease, z-index 0.3s ease
 
     &_type_active
+      z-index: 3
       opacity: 0
 
   &__wrap
