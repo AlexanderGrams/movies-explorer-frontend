@@ -20,10 +20,13 @@
       opacity: 0.7
 
     &:first-child
-      margin-left: 0
+      margin: 0
 
     &_type_action
       font-weight: 500
+
+    &_type_home
+      display: none
 
   &__profile-btn
     padding: 7px 0
@@ -118,8 +121,34 @@
     transition: right 0.5s ease
     z-index: 4
 
+    &__wrap
+      display: flex
+      flex-direction: column
+      align-items: center
+
     &__burger
       display: block
 
-  .nav_type_active
-    right: 0
+    &_type_active
+      right: 0
+
+    &__tab
+      font-weight: 500
+      font-size: 18px
+      line-height: 1.22
+      text-align: center
+      margin-left: 0
+      margin-top: 28px
+      position: relative
+
+      &_type_home
+        display: inline
+
+      &_type_action::before
+        content: ''
+        position: absolute
+        bottom: -4px
+        left: 0
+        width: 100%
+        height: 2px
+        background: var(--main-text-color)
