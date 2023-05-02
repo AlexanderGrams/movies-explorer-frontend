@@ -9,7 +9,7 @@ function Header({loggedIn}) {
   const [isActiveBurger, setIsActiveBurger] = useState(false);
 
   return (
-    <header className="header">
+    <header className={loggedIn ? "header header_type_loggedIn" : "header"}>
       <div className="header__wrap">
         <Link to={"/"} className="header__link">
           <img className="header__logo" src={logo} alt="Логотип"/>
