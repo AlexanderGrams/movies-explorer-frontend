@@ -1,3 +1,4 @@
+import AboutProject from "../AboutProject/AboutProject";
 import Header from "../Header/Header";
 import Promo from "../Promo/Promo";
 
@@ -6,6 +7,7 @@ function Main({loggedIn}) {
     <main className="main">
       <Header loggedIn={loggedIn} />
       <Promo />
+      <AboutProject />
     </main>
   );
 }
