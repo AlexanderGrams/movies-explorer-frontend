@@ -2,6 +2,13 @@
   width: 100%
   background: #073042
 
+  &__wrap
+    box-sizing: border-box
+    margin: 0 auto
+    padding: 75px 0
+    max-width: 1140px
+    position: relative
+
   &__image
     max-width: 310px
     width: 100%
@@ -10,13 +17,6 @@
     position: absolute
     top: 75px
     right: 0
-
-  &__wrap
-    box-sizing: border-box
-    margin: 0 auto
-    padding: 75px 0
-    max-width: 1140px
-    position: relative
 
   &__title
     width: 100%
@@ -41,7 +41,6 @@
     font-size: 13px
     line-height: 1.23
     color: var(--main-text-color)
-    mix-blend-mode: normal
     opacity: 0.5
 
   &__button
@@ -63,3 +62,48 @@
 
     &:hover
       opacity: 0.8
+
+@media screen and (max-width: 1200px)
+  .promo
+    &__wrap
+      display: flex
+      flex-direction: column
+      align-items: center
+      margin: 0 44px
+      padding: 140px 0 76px
+
+    &__image
+      position: static
+      margin: 0 0 48px
+
+    &__title
+      max-width: 680px
+      margin: 0 0 22px
+      font-size: 40px
+      line-height: 1.25
+      text-align: center
+
+    &__subtitle
+      max-width: 260px
+      margin: 0 0 92px
+      text-align: center
+
+@media screen and (max-width: 768px)
+  .promo
+    &__wrap
+      margin: 0 10px
+      padding: 70px 0 36px
+
+    &__image
+      margin: 0 0 44px
+      max-width: 210px
+
+    &__title
+      margin: 0 0 22px
+      font-size: 30px
+      line-height: 1.27
+      letter-spacing: -0.04em
+
+    &__subtitle
+      max-width: 260px
+      margin: 0 0 80px
