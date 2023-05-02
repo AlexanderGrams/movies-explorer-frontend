@@ -72,6 +72,7 @@
         top: 100%
         right: 50%
         transform: translate(50%, 14px)
+        width: 100%
         font-family: 'Inter'
         font-style: normal
         font-weight: 500
@@ -89,6 +90,7 @@
         top: 100%
         right: 50%
         transform: translate(50%, 14px)
+        width: 100%
         font-family: 'Inter'
         font-style: normal
         font-weight: 500
@@ -96,3 +98,63 @@
         line-height: 1.21
         text-align: center
         color: #8B8B8B
+
+@media screen and (max-width: 1200px)
+  .aboutProject
+    &__wrap
+      margin: 0 50px
+      padding: 90px 0
+
+    &__columns
+      column-gap: 30px
+
+    &__column-title
+      margin: 0 0 22px
+      line-height: 1.2
+
+    &__column-subtitle
+      font-size: 12px
+      line-height: 1.5
+
+    &__timeline-table
+      margin: 93px 0 0
+
+@media screen and (max-width: 768px)
+  .aboutProject
+    &__wrap
+      margin: 0 18px
+      padding: 70px 0
+
+    &__columns
+      flex-direction: column
+      row-gap: 56px
+      margin: 60px 0 0
+
+    &__column-title
+      margin: 0 0 16px
+      font-size: 18px
+      line-height: 1.22
+
+    &__column-subtitle
+      font-size: 11px
+      line-height: 1.45
+
+    &__timeline-table
+      margin: 60px 0 0
+      padding: 0 0 23px
+      grid-template-columns: 35% 65%
+      grid-auto-rows: 35px
+
+    &__timeline
+      font-size: 11px
+      line-height: 1.18
+
+      &_type_back
+        &::after
+          font-size: 11px
+          line-height: 1.18
+
+      &_type_front
+        &::after
+          font-size: 11px
+          line-height: 1.18
