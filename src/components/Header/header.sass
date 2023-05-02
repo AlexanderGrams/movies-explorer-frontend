@@ -1,7 +1,19 @@
 .header
   width: 100%
-  background: #202020
+  background: #073042
   position: relative
+
+  &_type_loggedIn
+    background: var(--main-bg-color)
+
+  &__wrap
+    box-sizing: border-box
+    margin: 0 auto
+    padding: 18px 0
+    max-width: 1140px
+    display: flex
+    justify-content: space-between
+    align-items: center
 
   &__lining
     position: absolute
@@ -17,15 +29,6 @@
     &_type_active
       z-index: 3
       opacity: 0
-
-  &__wrap
-    box-sizing: border-box
-    margin: 0 auto
-    padding: 18px 0
-    max-width: 1140px
-    display: flex
-    justify-content: space-between
-    align-items: center
 
   &__link
     display: flex

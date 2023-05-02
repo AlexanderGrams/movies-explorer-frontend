@@ -4,12 +4,12 @@ import Main from "../Main/Main";
 import "./app.sass"
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <div className="page">
       <Routes>
-        <Route path="*" element={
+        <Route path="/" element={
           <Main loggedIn={loggedIn}/>
         }/>
       </Routes>
