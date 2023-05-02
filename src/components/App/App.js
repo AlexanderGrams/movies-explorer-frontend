@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="page">
       <Routes>
-        <Route path="*" element={
+        <Route path="/" element={
           <Main loggedIn={loggedIn}/>
         }/>
       </Routes>

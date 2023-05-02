@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react"
 import logo from "../../images/logo.svg"
 import './header.sass'
-import NavTabPromo from "../NavTabPromo/NavTabPromo";
 import NavTab from "../NavTab/NavTab";
+import Navigation from "../Navigation/Navigation";
 
 function Header({loggedIn}) {
   const [isActiveBurger, setIsActiveBurger] = useState(false);
@@ -14,7 +14,7 @@ function Header({loggedIn}) {
         <Link to={"/"} className="header__link">
           <img className="header__logo" src={logo} alt="Логотип"/>
         </Link>
-        { loggedIn ? <NavTab isActiveBurger={isActiveBurger} setIsActiveBurger={setIsActiveBurger}/> : <NavTabPromo /> }
+        { loggedIn ? <Navigation isActiveBurger={isActiveBurger} setIsActiveBurger={setIsActiveBurger}/> : <NavTab /> }
       </div>
       <div className={isActiveBurger ? "header__lining header__lining_type_active" : "header__lining"}></div>
     </header>
