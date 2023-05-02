@@ -1,6 +1,7 @@
 import TitleSection from '../TitleSection/TitleSection';
 import './aboutMe.sass'
 import image from '../../images/about-me__image.jpg'
+import Portfolio from '../Portfolio/Portfolio';
 
 function AboutMe() {
   return (
@@ -20,6 +21,7 @@ function AboutMe() {
           </p>
           <a href='https://github.com/AlexanderGrams' target="_blank" rel="noreferrer" className='About-me__link'>Github</a>
         </div>
+        <Portfolio />
       </div>
     </section>
   );
