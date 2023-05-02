@@ -1,8 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
-import "./navigation.sass";
+import "./navTab.sass";
 
 
-function Navigation({isActiveBurger, setIsActiveBurger}) {
+function NavTab({isActiveBurger, setIsActiveBurger}) {
   function openPopupBurger(){
     setIsActiveBurger(!isActiveBurger)
   }
@@ -26,4 +26,4 @@ function Navigation({isActiveBurger, setIsActiveBurger}) {
   );
 }
 
-export default Navigation;
+export default NavTab;

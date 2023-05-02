@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import "./navTabMain.sass";
+import "./navTabPromo.sass";
 
-function NavTabMain() {
+function NavTabPromo() {
   return (
     <nav>
       <Link to={"/signup"} className="navLink">Регистрация</Link>
@@ -10,4 +10,4 @@ function NavTabMain() {
   );
 }
 
-export default NavTabMain;
+export default NavTabPromo;
