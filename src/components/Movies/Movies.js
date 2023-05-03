@@ -1,12 +1,11 @@
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import MainBlocks from "../MainBlocks/MainBlocks";
 
 function Movies({loggedIn}) {
   return (
-    <main>
-      <Header loggedIn={loggedIn}/>
-      <Footer />
-    </main>
+    <MainBlocks loggedIn={loggedIn}>
+      <main className="movies">
+      </main>
+    </MainBlocks>
   );
 }
 
