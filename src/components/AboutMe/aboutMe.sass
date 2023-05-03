@@ -15,7 +15,7 @@
   &__image
     max-width: 270px
     width: 100%
-    height: 327px
+    max-height: 327px
     object-fit: cover
     object-position: bottom
     position: absolute
@@ -79,3 +79,71 @@
 
     &:hover
       opacity: 0.7
+
+@media screen and (max-width: 1200px)
+  .About-me
+    &__wrap
+      margin: 0 50px
+      padding: 90px 0 80px
+
+    &__image
+      max-width: 255px
+      max-height: 307px
+      top: 207px
+
+    &__name
+      max-width: 348px
+      margin: 0 0 16px
+      font-size: 40px
+      line-height: 1
+
+    &__profession
+      max-width: 348px
+      margin: 0 0 20px
+      font-size: 12px
+      line-height: 1.5
+
+    &__description
+      max-width: 364px
+      margin: 0 0 87px
+      font-size: 12px
+      line-height: 1.5
+
+@media screen and (max-width: 768px)
+  .About-me
+    &__wrap
+      margin: 0 14px
+      padding: 70px 0
+
+    &__main
+      margin: 60px 0 0
+      display: flex
+      flex-direction: column
+      align-items: center
+
+    &__image
+      max-width: 292px
+      max-height: 352px
+      position: static
+      margin: 0 0 40px
+
+    &__name
+      max-width: none
+      margin: 0 0 20px
+      font-size: 30px
+      line-height: 1.2
+
+    &__profession
+      max-width: none
+      margin: 0 0 20px
+      font-size: 11px
+      line-height: 1.45
+
+    &__description
+      max-width: none
+      margin: 0 0 40px
+      font-size: 11px
+      line-height: 1.45
+
+    &__link
+      align-self: flex-start
