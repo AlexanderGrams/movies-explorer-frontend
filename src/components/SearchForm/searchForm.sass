@@ -1,0 +1,58 @@
+.search-form
+  width: 100%
+  background: var(--main-bg-color)
+
+  &__wrap
+    box-sizing: border-box
+    margin: 0 auto
+    padding: 80px 0 51px
+    max-width: 1140px
+
+  &__container
+    width: 100%
+    display: flex
+    align-items: center
+
+  &__input
+    box-sizing: border-box
+    margin: 0 10px 0 0
+    padding: 15px 22px
+    width: 100%
+    min-height: 48px
+    background: var(--additional-bg-color)
+    border: none
+    border-radius: 4px
+    color: var(--main-text-color)
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 500
+    font-size: 13px
+    line-height: 1.23
+    transition: box-shadow 0.3s ease
+
+    &:focus-visible
+      outline: none
+      box-shadow: 0 0 8px 3px var(--accent-color-btn)
+
+  &__button
+    background: var(--accent-color-btn)
+    border: none
+    width: 70px
+    height: 44px
+    border-radius: 40px
+    display: flex
+    justify-content: center
+    align-items: center
+    margin: 0
+    padding: 13px 5px
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 500
+    font-size: 12px
+    line-height: 1.5
+    color: var(--main-text-color)
+    cursor: pointer
+    transition: opacity 0.3s ease
+
+    &:hover
+      opacity: 0.8
