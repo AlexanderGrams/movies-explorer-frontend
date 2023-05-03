@@ -20,8 +20,8 @@ function SearchForm() {
           <button className="search-form__button" type="submit" aria-label="Кнопка найти">Найти</button>
         </form>
         <label className="search-form__checkbox">
-          <div className={`search-form__checkbox-switcher ${isActive && 'search-form__checkbox-switcher_active'}`}>
-            <button onClick={handlerClick} className={`search-form__checkbox-button ${isActive && 'search-form__checkbox-button_active'}`} type="button" aria-label="поиск по короткометражкам"></button>
+          <div onClick={handlerClick} className={`search-form__checkbox-switcher ${isActive && 'search-form__checkbox-switcher_active'}`} type="button" aria-label="поиск по короткометражкам">
+            <div className={`search-form__checkbox-circle ${isActive && 'search-form__checkbox-circle_active'}`}></div>
           </div>
           <p className="search-form__checkbox-name">Короткометражки</p>
         </label>
