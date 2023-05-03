@@ -37,8 +37,8 @@
   &__button
     background: var(--accent-color-btn)
     border: none
-    width: 70px
-    height: 44px
+    min-width: 70px
+    min-height: 44px
     border-radius: 40px
     display: flex
     justify-content: center
@@ -56,3 +56,69 @@
 
     &:hover
       opacity: 0.8
+
+  &__checkbox
+    margin-top: 30px
+    display: flex
+    align-items: center
+    justify-content: center
+
+  &__checkbox-switcher
+    cursor: pointer
+    width: 36px
+    height: 20px
+    border-radius: 20px
+    display: flex
+    align-items: center
+    background-color: var(--additional-text-color)
+    justify-content: flex-start
+    transition: background-color 0.3s ease
+
+    &_active
+      background-color: var(--accent-color)
+
+  &__checkbox-button
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08)
+    border: none
+    border-radius: 8px
+    background-color: var(--main-text-color)
+    width: 16px
+    height: 16px
+    margin: 0 2px
+    cursor: pointer
+    transition: margin-left 0.3s ease
+
+    &_active
+      background-color: var(--main-text-color)
+      margin-left: 18px
+
+  &__checkbox-name
+    margin: 0 0 0 12px
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 400
+    font-size: 12px
+    line-height: 1.5
+    color: var(--main-text-color)
+
+@media screen and (max-width: 1200px)
+  .search-form
+    &__wrap
+      margin: 0 30px
+      padding: 80px 0 50px
+
+@media screen and (max-width: 768px)
+  .search-form
+    &__wrap
+      margin: 0 14px
+      padding: 81px 0 55px
+
+    &__input
+      padding: 13px 16px
+
+    &__checkbox
+      margin-top: 41px
+
+    &__checkbox-name
+      font-size: 11px
+      line-height: 1.64
