@@ -1,0 +1,149 @@
+.About-me
+  width: 100%
+  background: var(--main-bg-color)
+
+  &__wrap
+    box-sizing: border-box
+    margin: 0 auto
+    padding: 110px 0 115px
+    max-width: 1140px
+    position: relative
+
+  &__main
+    margin: 66px 0 0
+
+  &__image
+    max-width: 270px
+    width: 100%
+    max-height: 327px
+    object-fit: cover
+    object-position: bottom
+    position: absolute
+    top: 227px
+    right: 0
+    border-radius: 10px
+
+  &__name
+    width: 100%
+    max-width: 600px
+    margin: 0 0 18px
+    padding: 0
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 400
+    font-size: 50px
+    line-height: 1.16
+    letter-spacing: -0.04em
+    color: var(--main-text-color)
+    z-index: 1
+
+  &__profession
+    width: 100%
+    max-width: 600px
+    margin: 0 0 26px
+    padding: 0
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 500
+    font-size: 18px
+    line-height: 1.11
+    color: var(--main-text-color)
+    z-index: 1
+
+  &__description
+    width: 100%
+    max-width: 600px
+    margin: 0 0 100px
+    padding: 0
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 400
+    font-size: 14px
+    line-height: 1.57
+    color: var(--main-text-color)
+    z-index: 1
+
+  &__link
+    text-decoration: none
+    margin: 0
+    padding: 0
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 500
+    font-size: 14px
+    line-height: 1.21
+    color: var(--main-text-color)
+    z-index: 1
+    cursor: pointer
+    transition: opacity 0.3s ease
+
+    &:hover
+      opacity: 0.7
+
+@media screen and (max-width: 1200px)
+  .About-me
+    &__wrap
+      margin: 0 50px
+      padding: 90px 0 80px
+
+    &__image
+      max-width: 255px
+      max-height: 307px
+      top: 207px
+
+    &__name
+      max-width: 348px
+      margin: 0 0 16px
+      font-size: 40px
+      line-height: 1
+
+    &__profession
+      max-width: 348px
+      margin: 0 0 20px
+      font-size: 12px
+      line-height: 1.5
+
+    &__description
+      max-width: 364px
+      margin: 0 0 87px
+      font-size: 12px
+      line-height: 1.5
+
+@media screen and (max-width: 768px)
+  .About-me
+    &__wrap
+      margin: 0 14px
+      padding: 70px 0
+
+    &__main
+      margin: 60px 0 0
+      display: flex
+      flex-direction: column
+      align-items: center
+
+    &__image
+      max-width: 292px
+      max-height: 352px
+      position: static
+      margin: 0 0 40px
+
+    &__name
+      max-width: none
+      margin: 0 0 20px
+      font-size: 30px
+      line-height: 1.2
+
+    &__profession
+      max-width: none
+      margin: 0 0 20px
+      font-size: 11px
+      line-height: 1.45
+
+    &__description
+      max-width: none
+      margin: 0 0 40px
+      font-size: 11px
+      line-height: 1.45
+
+    &__link
+      align-self: flex-start
