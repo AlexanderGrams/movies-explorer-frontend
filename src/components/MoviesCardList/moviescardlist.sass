@@ -42,3 +42,31 @@
 
     &:hover
       opacity: 0.8
+
+@media screen and (max-width: 1200px)
+  .card-list
+    &__wrap
+      margin: 0 30px
+      padding: 60px 0 80px
+
+    &__button
+      margin: 80px auto 0
+
+@media screen and (max-width: 768px)
+  .card-list
+    &__wrap
+      margin: 0 10px
+      padding: 40px 0 80px
+
+    &__button
+      margin: 80px auto 0
+
+    &__movies
+      grid-template-columns: 100%
+      grid-auto-rows: 232px
+      row-gap: 20px
+
+    &__button
+      margin: 70px auto 0
+      padding: 11px 20px 9px
+      max-width: 240px
