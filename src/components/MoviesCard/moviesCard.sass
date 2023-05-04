@@ -1,0 +1,97 @@
+.movies-card
+  box-sizing: border-box
+  width: 100%
+  background: var(--additional-bg-color)
+  padding: 6px 6px 6px 22px
+  display: flex
+  justify-content: space-between
+
+  &__info
+    margin: 16px 0
+
+  &__title
+    margin: 0 0 13px
+    padding: 0
+    width: 100%
+    max-width: 400px
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 500
+    font-size: 18px
+    line-height: 1.22
+    color: var(--main-text-color)
+
+  &__subtitle
+    margin: 0 0 30px
+    padding: 0
+    width: 100%
+    max-width: 37px
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 400
+    font-size: 11px
+    line-height: 1.18
+    color: var(--additional-text-color)
+
+  &__like
+    margin: 0
+    padding: 0
+    width: 14px
+    height: 12px
+    background: url(../../images/movies-card__like.svg) center/ cover no-repeat
+    cursor: pointer
+    transition: opacity 0.3s ease
+
+    &_type_active
+      background: url(../../images/movies-card__like_type_active.svg)
+
+    &:hover
+      opacity: 0.8
+
+  &__image
+    width: 100%
+    max-width: 220px
+    height: 122px
+    object-fit: cover
+
+@media screen and (max-width: 768px)
+  .movies-card
+    padding: 0
+    flex-direction: column-reverse
+    justify-content: center
+
+    &__info
+      margin: 14px 16px 14px 12px
+      position: relative
+
+    &__title
+      margin: 0 0 8px
+      max-width: 228px
+      font-size: 12px
+      line-height: 1.25
+
+    &__subtitle
+      margin: 0
+
+    &__like
+      position: absolute
+      top: 0
+      right: 0
+      margin: 0
+      padding: 0
+      width: 14px
+      height: 12px
+      background: url(../../images/movies-card__like.svg) center/ cover no-repeat
+      cursor: pointer
+      transition: opacity 0.3s ease
+
+      &_type_active
+        background: url(../../images/movies-card__like_type_active.svg)
+
+      &:hover
+        opacity: 0.8
+
+    &__image
+      margin: 0 auto
+      max-width: 300px
+      height: 168px
