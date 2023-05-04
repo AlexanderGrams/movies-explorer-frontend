@@ -1,0 +1,132 @@
+.search-form
+  width: 100%
+  background: var(--main-bg-color)
+
+  &__wrap
+    box-sizing: border-box
+    margin: 0 auto
+    padding: 80px 0 51px
+    max-width: 1140px
+    position: relative
+
+    &::after
+      content: ''
+      position: absolute
+      bottom: 10px
+      left: 0
+      width: 100%
+      height: 1px
+      background: var(--line-color)
+
+  &__container
+    width: 100%
+    display: flex
+    align-items: center
+
+  &__input
+    box-sizing: border-box
+    margin: 0 10px 0 0
+    padding: 15px 22px
+    width: 100%
+    min-height: 48px
+    background: var(--additional-bg-color)
+    border: none
+    border-radius: 4px
+    color: var(--main-text-color)
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 500
+    font-size: 13px
+    line-height: 1.23
+    transition: box-shadow 0.3s ease
+
+    &:focus-visible
+      outline: none
+      box-shadow: 0 0 8px 3px var(--accent-color-btn)
+
+  &__button
+    background: var(--accent-color-btn)
+    border: none
+    min-width: 70px
+    min-height: 44px
+    border-radius: 40px
+    display: flex
+    justify-content: center
+    align-items: center
+    margin: 0
+    padding: 13px 5px
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 500
+    font-size: 12px
+    line-height: 1.5
+    color: var(--main-text-color)
+    cursor: pointer
+    transition: opacity 0.3s ease
+
+    &:hover
+      opacity: 0.8
+
+  &__checkbox
+    margin-top: 30px
+    display: flex
+    align-items: center
+    justify-content: center
+
+  &__checkbox-switcher
+    cursor: pointer
+    width: 36px
+    height: 20px
+    border-radius: 20px
+    display: flex
+    align-items: center
+    background-color: var(--additional-text-color)
+    justify-content: flex-start
+    transition: background-color 0.3s ease
+
+    &_active
+      background-color: var(--accent-color)
+
+  &__checkbox-circle
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08)
+    border-radius: 8px
+    background-color: var(--main-text-color)
+    width: 16px
+    height: 16px
+    margin: 0 2px
+    transition: margin-left 0.3s ease
+
+    &_active
+      background-color: var(--main-text-color)
+      margin-left: 18px
+
+  &__checkbox-name
+    margin: 0 0 0 12px
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 400
+    font-size: 12px
+    line-height: 1.5
+    color: var(--main-text-color)
+
+@media screen and (max-width: 1200px)
+  .search-form
+    &__wrap
+      margin: 0 30px
+      padding: 80px 0 50px
+
+@media screen and (max-width: 768px)
+  .search-form
+    &__wrap
+      margin: 0 14px
+      padding: 81px 0 55px
+
+    &__input
+      padding: 13px 16px
+
+    &__checkbox
+      margin-top: 41px
+
+    &__checkbox-name
+      font-size: 11px
+      line-height: 1.64
