@@ -11,6 +11,7 @@
     flex-direction: column
 
   &__movies
+    width: 100%
     list-style: none
     margin: 0
     padding: 0
@@ -62,11 +63,17 @@
       margin: 80px auto 0
 
     &__movies
-      grid-template-columns: 100%
+      margin: 0 auto
+      justify-content: center
+      grid-template-columns: repeat(2, minmax(220px, 300px))
       grid-auto-rows: 232px
-      row-gap: 20px
+      gap: 20px
 
     &__button
       margin: 70px auto 0
       padding: 11px 20px 9px
       max-width: 240px
+
+@media screen and (max-width: 500px)
+  .card-list__movies
+    grid-template-columns: minmax(220px, 300px)

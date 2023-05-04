@@ -1,6 +1,6 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 import "./moviescardlist.sass"
-import images from "../../images/logo.svg"
+import images from "../../images/movies-card__image.jpg"
 
 function MoviesCardList() {
   return (
