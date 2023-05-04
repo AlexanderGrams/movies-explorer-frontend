@@ -1,6 +1,5 @@
 import MainBlocks from "../MainBlocks/MainBlocks";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import Preloader from "../Preloader/Preloader";
 import SearchForm from "../SearchForm/SearchForm";
 import "./savedMovies.sass"
 
@@ -9,7 +8,7 @@ function SavedMovies({loggedIn}) {
     <MainBlocks loggedIn={loggedIn}>
       <main className="saved-movies">
         <SearchForm />
-        <MoviesCardList />
+        <MoviesCardList locationSavedPage={true}/>
       </main>
     </MainBlocks>
   );
