@@ -3,6 +3,7 @@ import { useState } from "react"
 import Main from "../Main/Main";
 import "./app.sass"
 import Movies from "../Movies/Movies";
+import SavedMovies from "../SavedMovies/SavedMovies";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -15,6 +16,9 @@ function App() {
         }/>
         <Route path="/movies" element={
           <Movies loggedIn={loggedIn}/>
+        }/>
+        <Route path="/saved-movies" element={
+          <SavedMovies loggedIn={loggedIn}/>
         }/>
       </Routes>
     </div>
