@@ -5,6 +5,7 @@ import "./app.sass"
 import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import NotFound from "../NotFound/NotFound";
+import Profile from "../Profile/Profile";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -20,6 +21,9 @@ function App() {
         }/>
         <Route path="/saved-movies" element={
           <SavedMovies loggedIn={loggedIn}/>
+        }/>
+        <Route path="/profile" element={
+          <Profile loggedIn={loggedIn}/>
         }/>
         <Route path="*" element={
           <NotFound />

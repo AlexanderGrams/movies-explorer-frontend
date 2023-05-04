@@ -1,12 +1,18 @@
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
-function MainBlocks({ loggedIn, children }) {
+function MainBlocks({ loggedIn, children, locationProfile }) {
   return (
     <>
       <Header loggedIn={loggedIn}/>
         {children}
-      <Footer />
+      {
+        locationProfile
+        ?
+        <></>
+        :
+        <Footer />
+      }
     </>
   );
 }
