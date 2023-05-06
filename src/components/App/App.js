@@ -6,6 +6,7 @@ import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import NotFound from "../NotFound/NotFound";
 import Profile from "../Profile/Profile";
+import Register from "../Register/Register";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -15,6 +16,9 @@ function App() {
       <Routes>
         <Route path="/" element={
           <Main loggedIn={loggedIn}/>
+        }/>
+        <Route path="/signup" element={
+          <Register />
         }/>
         <Route path="/movies" element={
           <Movies loggedIn={loggedIn}/>
