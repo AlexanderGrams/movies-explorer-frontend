@@ -10,9 +10,7 @@ function Promo() {
         <p className='promo__subtitle'>
           Листайте ниже, чтобы узнать больше про этот проект и его создателя.
         </p>
-        <a href='https://practicum.yandex.ru/' target="_blank" rel="noreferrer" className='promo__link'>
-          <button className='promo__button'>Узнать больше</button>
-        </a>
+        <a href='https://practicum.yandex.ru/' target="_blank" rel="noreferrer" className='promo__link'>Узнать больше</a>
       </div>
     </section>
   );
