@@ -66,6 +66,10 @@
     border-radius: 4px
     transition: box-shadow 0.3s ease
 
+    &_active
+      text-align: center
+      padding: 5px 0
+
     &:focus-visible
       outline: none
       box-shadow: 0 0 8px 3px var(--accent-color-btn)
@@ -104,6 +108,25 @@
 
     &:hover
       opacity: 0.7
+
+  &__button-saved
+    width: 100%
+    padding: 14px 0
+    margin: 0
+    background: var(--accent-color-btn)
+    border-radius: 3px
+    border: none
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 400
+    font-size: 14px
+    line-height: 1.21
+    color: var(--main-text-color)
+    cursor: pointer
+    transition: opacity 0.3s ease
+
+    &:hover
+      opacity: 0.8
 
   &__link
     padding: 0
