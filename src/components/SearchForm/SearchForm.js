@@ -4,6 +4,7 @@ import "./searchForm.sass"
 function SearchForm() {
   const [isActive, setIsActive] = useState(false)
 
+
   function handlerClick() {
     if(isActive) {
       setIsActive(false)
