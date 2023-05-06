@@ -7,6 +7,7 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import NotFound from "../NotFound/NotFound";
 import Profile from "../Profile/Profile";
 import LoginAndRegister from "../LoginAndRegister/LoginAndRegister";
+import LoginAndRegisterForm from "../LoginAndRegisterForm/LoginAndRegisterForm";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -18,7 +19,9 @@ function App() {
           <Main loggedIn={loggedIn}/>
         }/>
         <Route path="/signup" element={
-          <LoginAndRegister title="Добро пожаловать!" paragraph="Уже зарегистрированы?" link="/signin" linkText="Войти"/>
+          <LoginAndRegister title="Добро пожаловать!" paragraph="Уже зарегистрированы?" link="/signin" linkText="Войти">
+            <LoginAndRegisterForm />
+          </LoginAndRegister>
         }/>
         <Route path="/movies" element={
           <Movies loggedIn={loggedIn}/>

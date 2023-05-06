@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./LoginAndRegister.sass";
+import "./loginAndRegister.sass";
 import logo from '../../images/logo.svg'
 
 function LoginAndRegister({title, paragraph, children, link, linkText}) {
