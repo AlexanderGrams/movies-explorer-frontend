@@ -1,10 +1,10 @@
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
-function MainBlocks({ loggedIn, children, locationProfile }) {
+function MainBlocks({ loggedIn, children, locationProfile, isMainPages }) {
   return (
     <>
-      <Header loggedIn={loggedIn}/>
+      <Header loggedIn={loggedIn} isMainPages={isMainPages}/>
         {children}
       {
         locationProfile

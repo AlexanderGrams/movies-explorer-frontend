@@ -6,7 +6,7 @@ import Techs from "../Techs/Techs";
 
 function Main({loggedIn}) {
   return (
-    <MainBlocks loggedIn={loggedIn}>
+    <MainBlocks loggedIn={loggedIn} isMainPages={false}>
       <main className="main">
         <Promo />
         <AboutProject />
