@@ -7,6 +7,7 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import NotFound from "../NotFound/NotFound";
 import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
+import Login from "../Login/Login";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -19,6 +20,9 @@ function App() {
         }/>
         <Route path="/signup" element={
           <Register />
+        }/>
+        <Route path="/signin" element={
+          <Login />
         }/>
         <Route path="/movies" element={
           <Movies loggedIn={loggedIn}/>
