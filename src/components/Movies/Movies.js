@@ -5,7 +5,7 @@ import "./movies.sass"
 
 function Movies({loggedIn}) {
   return (
-    <MainBlocks loggedIn={loggedIn}>
+    <MainBlocks loggedIn={loggedIn} isMainPages={true}>
       <main className="movies">
         <SearchForm />
         <MoviesCardList />

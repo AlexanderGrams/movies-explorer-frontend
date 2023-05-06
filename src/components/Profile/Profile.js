@@ -4,7 +4,7 @@ import "./profile.sass"
 import { useState } from "react";
 
 function Profile({loggedIn}) {
-  const [isActiveEditProfile, setIsActiveEditProfile] = useState(true);
+  const [isActiveEditProfile, setIsActiveEditProfile] = useState(false);
 
   function hendlerEditProfile() {
     setIsActiveEditProfile(!isActiveEditProfile)
@@ -15,7 +15,7 @@ function Profile({loggedIn}) {
   let greeting = `Привет, ${name}!`;
 
   return (
-    <MainBlocks loggedIn={loggedIn} locationProfile={true}>
+    <MainBlocks loggedIn={loggedIn} locationProfile={true} isMainPages={true}>
       <main className="profile">
         <div className="profile__wrap">
           <h2 className="profile__title">{greeting}</h2>

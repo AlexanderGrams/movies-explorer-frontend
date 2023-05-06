@@ -5,7 +5,7 @@ import "./savedMovies.sass"
 
 function SavedMovies({loggedIn}) {
   return (
-    <MainBlocks loggedIn={loggedIn}>
+    <MainBlocks loggedIn={loggedIn} isMainPages={true}>
       <main className="saved-movies">
         <SearchForm />
         <MoviesCardList locationSavedPage={true}/>
