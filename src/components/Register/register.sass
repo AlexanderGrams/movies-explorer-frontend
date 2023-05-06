@@ -1,0 +1,50 @@
+.form__container
+  display: flex
+  flex-direction: column
+
+.form__input-name
+  margin: 0 0 10px
+  color: var(--additional-text-color)
+  font-family: 'Inter'
+  font-style: normal
+  font-weight: 400
+  font-size: 10px
+  line-height: 1.2
+  cursor: pointer
+  align-self: flex-start
+
+.form__input
+  margin: 0
+  padding: 15px
+  border: none
+  border-radius: 8px
+  font-family: 'Inter'
+  font-style: normal
+  font-weight: 400
+  font-size: 13px
+  line-height: 1.23
+  color: var(--main-text-color)
+  background: var(--additional-bg-color)
+  transition: box-shadow 0.3s ease, color 0.3s ease
+
+  &:focus-visible
+    outline: none
+    box-shadow: 0 0 8px 3px var(--accent-color-btn)
+
+.form__input_type_error
+  color: var(--accent-color-focus)
+  box-shadow: 0 0 8px 2px var(--accent-color-focus)
+
+  &:focus-visible
+    color: var(--main-text-color)
+
+.form__text-error
+  min-height: 12px
+  margin-top: 10px
+  display: block
+  font-family: 'Inter'
+  font-style: normal
+  font-weight: 400
+  font-size: 10px
+  line-height: 1.2
+  color: var(--accent-color-focus)

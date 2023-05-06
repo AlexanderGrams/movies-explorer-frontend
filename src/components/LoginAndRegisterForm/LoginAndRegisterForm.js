@@ -11,10 +11,10 @@ function LoginAndRegisterForm({name, children, buttonText}) {
   }
 
   return (
-    <form className="LoginAndRegisterForm" name={name} noValidate onSubmit={handlerOnSubmit}>
+    <form className="LoginAndRegisterForm" name={name} noValidate onSubmit={handlerOnSubmit} >
       {children}
       {buttonLoading ?
-        <div className='loading-btn'>
+        <div className='loading-btn loading-btn_location_login'>
           <img className='loading-btn__img' src={imgLoading} alt='анимация загрузки' />
         </div>
         :
