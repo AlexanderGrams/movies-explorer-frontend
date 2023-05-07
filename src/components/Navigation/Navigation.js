@@ -17,10 +17,10 @@ function Navigation({isActiveBurger, setIsActiveBurger}) {
         </div>
         <Link to={"/profile"} className="nav__profile-btn">Аккаунт</Link>
       </nav>
-      <button className={isActiveBurger ? "nav__burger_active nav__burger" : "nav__burger"} onClick={openPopupBurger}>
-        <span className="nav__burger-line"></span>
-        <span className="nav__burger-line"></span>
-        <span className="nav__burger-line"></span>
+      <button className={isActiveBurger ? "nav-burger_active nav-burger" : "nav-burger"} onClick={openPopupBurger}>
+        <span className="nav-burger__line"></span>
+        <span className="nav-burger__line"></span>
+        <span className="nav-burger__line"></span>
       </button>
     </>
   );
