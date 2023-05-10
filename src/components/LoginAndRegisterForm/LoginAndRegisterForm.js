@@ -2,11 +2,12 @@ import { useState} from 'react';
 import "./loginAndRegisterForm.sass";
 import imgLoading from "../../images/loading.gif";
 
-function LoginAndRegisterForm({name, children, buttonText}) {
+function LoginAndRegisterForm({name, children, buttonText, handleSubmit}) {
 
   const [buttonLoading, setButtonLoading] = useState(false);
 
   function handlerOnSubmit(e){
+    handleSubmit(e, setButtonLoading)
     setButtonLoading(true)
   }
 

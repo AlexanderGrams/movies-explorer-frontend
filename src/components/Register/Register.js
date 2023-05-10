@@ -2,10 +2,16 @@ import LoginAndRegister from "../LoginAndRegister/LoginAndRegister";
 import LoginAndRegisterForm from "../LoginAndRegisterForm/LoginAndRegisterForm";
 import "./register.sass"
 
-function Register() {
+function Register({ onRegister }) {
+
+  function handleSubmit(e, setButtonLoading) {
+    e.preventDefault();
+    // onRegister(values, resetForm, setButtonLoading)
+  }
+
   return (
     <LoginAndRegister title="Добро пожаловать!" paragraph="Уже зарегистрированы?" link="/signin" linkText="Войти">
-      <LoginAndRegisterForm>
+      <LoginAndRegisterForm handleSubmit={handleSubmit}>
         <div className="form">
           <label className="form__input-name" for="name">Имя</label>
           <input id="name" className="form__input" name="name" type="text" minLength="2" required />
