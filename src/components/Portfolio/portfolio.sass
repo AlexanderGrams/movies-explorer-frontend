@@ -1,0 +1,93 @@
+.portfolio
+  width: 100%
+  margin: 100px 0 0
+
+  &__title
+    margin: 0 0 50px
+    padding: 0
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 400
+    font-size: 18px
+    line-height: 1.11
+    color: var(--additional-text-color)
+
+  &__projects
+    list-style: none
+    margin: 0
+    padding: 0
+
+  &__project
+    width: 100%
+    margin: 40px 0 0
+    position: relative
+
+    &::after
+      content: ''
+      position: absolute
+      bottom: -19px
+      left: 0
+      width: 100%
+      height: 1px
+      background: var(--line-color)
+
+    &:last-child::after
+      display: none
+
+    &:first-child
+      margin: 0
+
+  &__link
+    box-sizing: border-box
+    padding: 0 30px 0 0
+    display: inline-block
+    text-decoration: none
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 400
+    font-size: 30px
+    line-height: 1.67
+    letter-spacing: -0.04em
+    color: var(--main-text-color)
+    transition: opacity 0.3s ease
+    cursor: pointer
+    width: 100%
+    position: relative
+
+    &::before
+      content: ''
+      position: absolute
+      top: 20px
+      right: 6px
+      width: 17px
+      height: 17px
+      background: url(../../images/portfolio__arrow.svg) center/ contain no-repeat
+
+    &:hover
+      opacity: 0.7
+
+@media screen and (max-width: 1200px)
+  .portfolio
+    margin: 90px 0 0
+
+    &__link
+      font-size: 28px
+      line-height: 1.79
+
+@media screen and (max-width: 768px)
+  .portfolio
+    margin: 70px 0 0
+
+    &__title
+      margin: 0 0 40px
+      font-size: 14px
+      line-height: 1.43
+
+    &__link
+      font-size: 18px
+      line-height: 1.56
+
+      &::before
+        top: 9px
+        width: 10px
+        height: 10px
