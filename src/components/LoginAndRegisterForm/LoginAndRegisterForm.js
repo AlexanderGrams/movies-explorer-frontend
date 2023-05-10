@@ -2,7 +2,7 @@ import { useState} from 'react';
 import "./loginAndRegisterForm.sass";
 import imgLoading from "../../images/loading.gif";
 
-function LoginAndRegisterForm({name, children, buttonText, handleSubmit}) {
+function LoginAndRegisterForm({isValid, name, children, buttonText, handleSubmit}) {
 
   const [buttonLoading, setButtonLoading] = useState(false);
 
@@ -19,7 +19,7 @@ function LoginAndRegisterForm({name, children, buttonText, handleSubmit}) {
           <img className='loading-btn__img' src={imgLoading} alt='анимация загрузки' />
         </div>
         :
-        <input className="LoginAndRegisterForm__button" type="submit" value={buttonText} />
+        <input className={isValid ? "LoginAndRegisterForm__button" : "LoginAndRegisterForm__button_disabled"} type="submit" value={buttonText} disabled={isValid ? false : true} />
       }
     </form>
   );
