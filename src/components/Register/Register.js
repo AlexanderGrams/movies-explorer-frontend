@@ -3,7 +3,7 @@ import LoginAndRegisterForm from "../LoginAndRegisterForm/LoginAndRegisterForm";
 import "./register.sass"
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
-function Register({ onRegister }) {
+function Register({ onRegister, isregisterResponse }) {
   const {values, resetForm, handleChange, errors, isValid} = useFormAndValidation();
 
   function handleSubmit(e, setButtonLoading) {
@@ -29,6 +29,9 @@ function Register({ onRegister }) {
           <input id="passwordUser" name="passwordUser" type="password" className={errors.passwordUser ? "form__input form__input_type_error" : "form__input"} minLength="2" required onChange={handleChange}/>
           <span className="form__text-error">{errors.passwordUser}</span>
         </div>
+        <p className="error">
+          {isregisterResponse}
+        </p>
       </LoginAndRegisterForm>
     </LoginAndRegister>
   );

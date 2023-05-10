@@ -50,7 +50,7 @@ function App() {
           <Main loggedIn={loggedIn}/>
         }/>
         <Route path="/signup" element={
-          <Register onRegister={handleRegister}/>
+          <Register onRegister={handleRegister} isregisterResponse={isregisterResponse}/>
         }/>
         <Route path="/signin" element={
           <Login />
