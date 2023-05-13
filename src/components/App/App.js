@@ -14,10 +14,6 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isRegisterResponse, setIsRegisterResponse] = useState('');
   const [isLoginResponse, setIsLoginResponse] = useState('');
-  // const [message, setMessage] = useState({
-  //   status: false,
-  //   text: "",
-  // })
 
   const navigate = useNavigate();
 
