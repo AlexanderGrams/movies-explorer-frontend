@@ -10,6 +10,7 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import { register, authorize, getContent } from "../../utils/auth";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
+import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   // Авторизация пользователя
@@ -113,13 +114,13 @@ function App() {
             <Login onLogin={handleLogin} isLoginResponse={isLoginResponse} />
           }/>
           <Route path="/movies" element={
-            <Movies loggedIn={loggedIn}/>
+            <ProtectedRouteElement component={Movies} loggedIn={loggedIn} />
           }/>
           <Route path="/saved-movies" element={
-            <SavedMovies loggedIn={loggedIn}/>
+            <ProtectedRouteElement component={SavedMovies} loggedIn={loggedIn} />
           }/>
           <Route path="/profile" element={
-            <Profile loggedIn={loggedIn}/>
+            <ProtectedRouteElement component={Profile} loggedIn={loggedIn} />
           }/>
           <Route path="*" element={
             <NotFound />
