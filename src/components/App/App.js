@@ -34,12 +34,12 @@ function App() {
         localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
         setIsLoginResponse("");
-        navigate('/movies', {replace: true});
-        setCurrentUser({
-          userId: res._id,
-          email: res.email,
-          name: res.name,
-        })
+        navigate('/profile', {replace: true});
+        // setCurrentUser({
+        //   userId: res._id,
+        //   email: res.email,
+        //   name: res.name,
+        // })
       })
       .catch((err) => {
         console.log(err)
@@ -84,7 +84,7 @@ function App() {
       getContent(jwt)
         .then((res) => {
           setLoggedIn(true);
-          navigate("/movies", {replace: true});
+          navigate("/", {replace: true});
           setCurrentUser({
             userId: res._id,
             email: res.email,
@@ -98,6 +98,13 @@ function App() {
     }else{
       // setLoadingBoolean(true);
     }
+  }
+
+  function signOut() {
+    localStorage.removeItem('jwt');
+    navigate('/signin');
+    setLoggedIn(false);
+    setCurrentUser({});
   }
 
   return (
@@ -120,7 +127,7 @@ function App() {
             <ProtectedRouteElement component={SavedMovies} loggedIn={loggedIn} />
           }/>
           <Route path="/profile" element={
-            <ProtectedRouteElement component={Profile} loggedIn={loggedIn} />
+            <ProtectedRouteElement component={Profile} loggedIn={loggedIn} signOut={signOut}/>
           }/>
           <Route path="*" element={
             <NotFound />

@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
 import MainBlocks from "../MainBlocks/MainBlocks";
 import "./profile.sass"
 import { useState, useContext } from "react";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext.js"
 
-function Profile({loggedIn}) {
+function Profile({ loggedIn, signOut }) {
   const [isActiveEditProfile, setIsActiveEditProfile] = useState(false);
 
   const currentUserData = useContext(CurrentUserContext);
@@ -39,7 +38,7 @@ function Profile({loggedIn}) {
               <button className="profile__button" onClick={hendlerEditProfile}>Редактировать</button>
             }
           </form>
-          <Link to={"/"} className="profile__link">Выйти из аккаунта</Link>
+          <button onClick={signOut} className="profile__button-Out">Выйти из аккаунта</button>
         </div>
       </main>
     </MainBlocks>
