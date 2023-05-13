@@ -1,5 +1,5 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Main from "../Main/Main";
 import "./app.sass"
 import Movies from "../Movies/Movies";
@@ -8,7 +8,7 @@ import NotFound from "../NotFound/NotFound";
 import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
-import { register, authorize } from "../../utils/auth";
+import { register, authorize, getContent } from "../../utils/auth";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -60,6 +60,27 @@ function App() {
         resetForm();
         setButtonLoading(false);
       })
+  }
+
+  useEffect(()=>{
+    tokenCheck();
+  }, [])
+
+  function tokenCheck(){
+    const jwt = localStorage.getItem('jwt');
+    if(jwt){
+      getContent(jwt)
+        .then((res) => {
+          setLoggedIn(true);
+          navigate("/movies", {replace: true});
+        })
+        .catch((err) => {
+          console.log(err);
+          // setLoadingBoolean(true);
+        })
+    }else{
+      // setLoadingBoolean(true);
+    }
   }
 
   return (
