@@ -3,7 +3,7 @@ import LoginAndRegisterForm from "../LoginAndRegisterForm/LoginAndRegisterForm";
 import "./register.sass"
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
-function Register({ onRegister, isregisterResponse }) {
+function Register({ onRegister, isRegisterResponse }) {
   const {values, resetForm, handleChange, errors, isValid} = useFormAndValidation();
 
   function handleSubmit(e, setButtonLoading) {
@@ -15,22 +15,22 @@ function Register({ onRegister, isregisterResponse }) {
     <LoginAndRegister title="Добро пожаловать!" paragraph="Уже зарегистрированы?" link="/signin" linkText="Войти">
       <LoginAndRegisterForm isValid={isValid} name={'register'} buttonText="Зарегистрироваться" handleSubmit={handleSubmit}>
         <div className="form">
-          <label className="form__input-name" htmlFor="nameUser">Имя</label>
-          <input id="nameUser" className={errors.nameUser ? "form__input form__input_type_error" : "form__input"} name="nameUser" type="text" minLength="2" required onChange={handleChange}/>
-          <span className="form__text-error">{errors.nameUser}</span>
+          <label className="form__input-name" htmlFor="nameUserRegister">Имя</label>
+          <input id="nameUserRegister" className={errors.nameUserRegister ? "form__input form__input_type_error" : "form__input"} name="nameUserRegister" type="text" minLength="2" required onChange={handleChange}/>
+          <span className="form__text-error">{errors.nameUserRegister}</span>
         </div>
         <div className="form">
-          <label className="form__input-name" htmlFor="emailUser">E-mail</label>
-          <input id="emailUser" className={errors.emailUser ? "form__input form__input_type_error" : "form__input"} name="emailUser" type="email" minLength="2" required onChange={handleChange}/>
-          <span className="form__text-error">{errors.emailUser}</span>
+          <label className="form__input-name" htmlFor="emailUserRegister">E-mail</label>
+          <input id="emailUserRegister" className={errors.emailUserRegister ? "form__input form__input_type_error" : "form__input"} name="emailUserRegister" type="email" minLength="2" required onChange={handleChange}/>
+          <span className="form__text-error">{errors.emailUserRegister}</span>
         </div>
         <div className="form">
-          <label className="form__input-name" htmlFor="passwordUser">Пароль</label>
-          <input id="passwordUser" name="passwordUser" type="password" className={errors.passwordUser ? "form__input form__input_type_error" : "form__input"} minLength="2" required onChange={handleChange}/>
-          <span className="form__text-error">{errors.passwordUser}</span>
+          <label className="form__input-name" htmlFor="passwordUserRegister">Пароль</label>
+          <input id="passwordUserRegister" name="passwordUserRegister" type="password" className={errors.passwordUserRegister ? "form__input form__input_type_error" : "form__input"} minLength="2" required onChange={handleChange}/>
+          <span className="form__text-error">{errors.passwordUserRegister}</span>
         </div>
         <p className="error">
-          {isregisterResponse}
+          {isRegisterResponse}
         </p>
       </LoginAndRegisterForm>
     </LoginAndRegister>
