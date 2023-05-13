@@ -3,7 +3,7 @@ import LoginAndRegisterForm from "../LoginAndRegisterForm/LoginAndRegisterForm";
 import "./register.sass"
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
-function Register({ onRegister, isregisterResponse }) {
+function Register({ onRegister, isRegisterResponse }) {
   const {values, resetForm, handleChange, errors, isValid} = useFormAndValidation();
 
   function handleSubmit(e, setButtonLoading) {
@@ -30,7 +30,7 @@ function Register({ onRegister, isregisterResponse }) {
           <span className="form__text-error">{errors.passwordUser}</span>
         </div>
         <p className="error">
-          {isregisterResponse}
+          {isRegisterResponse}
         </p>
       </LoginAndRegisterForm>
     </LoginAndRegister>

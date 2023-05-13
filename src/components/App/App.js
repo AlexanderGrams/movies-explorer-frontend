@@ -8,11 +8,12 @@ import NotFound from "../NotFound/NotFound";
 import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
-import { register } from "../../utils/auth";
+import { register, authorize } from "../../utils/auth";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [isregisterResponse, setIsregisterResponse] = useState('');
+  const [isRegisterResponse, setIsRegisterResponse] = useState('');
+  const [isLoginResponse, setIsLoginResponse] = useState('');
   // const [message, setMessage] = useState({
   //   status: false,
   //   text: "",
@@ -21,21 +22,43 @@ function App() {
   const navigate = useNavigate();
 
 
+  function handleLogin(values, resetForm, setButtonLoading) {
+    // setLoadingBoolean(false);
 
+    const {emailUser, password} = values
+    authorize(emailUser, password)
+      .then((res)=>{
+        localStorage.setItem("jwt", res.token);
+        setLoggedIn(true);
+        setIsLoginResponse("");
+        navigate('/movies', {replace: true});
+      })
+      .catch((err) => {
+        console.log(err)
+        if(err === "Ошибка: 401"){
+          return setIsLoginResponse("Неправильные почта или пароль");
+        }
+        return setIsLoginResponse("Что-то пошло не так! Попробуйте ещё раз.");
+      })
+      .finally(()=>{
+        resetForm()
+        setButtonLoading(false)
+      })
+  }
 
   function handleRegister(values, resetForm, setButtonLoading){
     const { nameUser, emailUser, passwordUser } = values
     register(nameUser, emailUser, passwordUser)
       .then(()=>{
-        setIsregisterResponse("");
+        setIsRegisterResponse("");
         navigate('/signin', {replace: true});
       })
       .catch((err) => {
         console.log(err)
         if(err === "Ошибка: 409"){
-          return setIsregisterResponse("Пользователь с такой почтой уже зарегистрирован");
+          return setIsRegisterResponse("Пользователь с такой почтой уже зарегистрирован");
         }
-        return setIsregisterResponse("Что-то пошло не так! Попробуйте ещё раз.");
+        return setIsRegisterResponse("Что-то пошло не так! Попробуйте ещё раз.");
       })
       .finally(()=>{
         resetForm();
@@ -50,10 +73,10 @@ function App() {
           <Main loggedIn={loggedIn}/>
         }/>
         <Route path="/signup" element={
-          <Register onRegister={handleRegister} isregisterResponse={isregisterResponse}/>
+          <Register onRegister={handleRegister} isRegisterResponse={isRegisterResponse}/>
         }/>
         <Route path="/signin" element={
-          <Login />
+          <Login onLogin={handleLogin} isLoginResponse={isLoginResponse} />
         }/>
         <Route path="/movies" element={
           <Movies loggedIn={loggedIn}/>
