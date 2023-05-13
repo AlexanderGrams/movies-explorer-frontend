@@ -9,11 +9,17 @@ import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import { register, authorize, getContent } from "../../utils/auth";
+import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 
 function App() {
+  // Авторизация пользователя
   const [loggedIn, setLoggedIn] = useState(false);
+  // Ответ ошибки при регистрации
   const [isRegisterResponse, setIsRegisterResponse] = useState('');
+  // Ответ ошибки при логине
   const [isLoginResponse, setIsLoginResponse] = useState('');
+  // Данные пользователя
+  const [currentUser, setCurrentUser] = useState({});
 
   const navigate = useNavigate();
 
@@ -28,6 +34,11 @@ function App() {
         setLoggedIn(true);
         setIsLoginResponse("");
         navigate('/movies', {replace: true});
+        setCurrentUser({
+          userId: res._id,
+          email: res.email,
+          name: res.name,
+        })
       })
       .catch((err) => {
         console.log(err)
@@ -73,6 +84,11 @@ function App() {
         .then((res) => {
           setLoggedIn(true);
           navigate("/movies", {replace: true});
+          setCurrentUser({
+            userId: res._id,
+            email: res.email,
+            name: res.name,
+          })
         })
         .catch((err) => {
           console.log(err);
@@ -85,29 +101,31 @@ function App() {
 
   return (
     <div className="page">
-      <Routes>
-        <Route path="/" element={
-          <Main loggedIn={loggedIn}/>
-        }/>
-        <Route path="/signup" element={
-          <Register onRegister={handleRegister} isRegisterResponse={isRegisterResponse}/>
-        }/>
-        <Route path="/signin" element={
-          <Login onLogin={handleLogin} isLoginResponse={isLoginResponse} />
-        }/>
-        <Route path="/movies" element={
-          <Movies loggedIn={loggedIn}/>
-        }/>
-        <Route path="/saved-movies" element={
-          <SavedMovies loggedIn={loggedIn}/>
-        }/>
-        <Route path="/profile" element={
-          <Profile loggedIn={loggedIn}/>
-        }/>
-        <Route path="*" element={
-          <NotFound />
-        }/>
-      </Routes>
+      <CurrentUserContext.Provider value={currentUser}>
+        <Routes>
+          <Route path="/" element={
+            <Main loggedIn={loggedIn}/>
+          }/>
+          <Route path="/signup" element={
+            <Register onRegister={handleRegister} isRegisterResponse={isRegisterResponse}/>
+          }/>
+          <Route path="/signin" element={
+            <Login onLogin={handleLogin} isLoginResponse={isLoginResponse} />
+          }/>
+          <Route path="/movies" element={
+            <Movies loggedIn={loggedIn}/>
+          }/>
+          <Route path="/saved-movies" element={
+            <SavedMovies loggedIn={loggedIn}/>
+          }/>
+          <Route path="/profile" element={
+            <Profile loggedIn={loggedIn}/>
+          }/>
+          <Route path="*" element={
+            <NotFound />
+          }/>
+        </Routes>
+      </CurrentUserContext.Provider>
     </div>
   );
 }
