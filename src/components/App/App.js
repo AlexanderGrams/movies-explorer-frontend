@@ -21,8 +21,8 @@ function App() {
   function handleLogin(values, resetForm, setButtonLoading) {
     // setLoadingBoolean(false);
 
-    const {emailUser, password} = values
-    authorize(emailUser, password)
+    const {emailUserLogin, passwordUserLogin} = values
+    authorize(emailUserLogin, passwordUserLogin)
       .then((res)=>{
         localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
@@ -43,8 +43,8 @@ function App() {
   }
 
   function handleRegister(values, resetForm, setButtonLoading){
-    const { nameUser, emailUser, passwordUser } = values
-    register(nameUser, emailUser, passwordUser)
+    const { nameUserRegister, emailUserRegister, passwordUserRegister } = values
+    register(nameUserRegister, emailUserRegister, passwordUserRegister)
       .then(()=>{
         setIsRegisterResponse("");
         navigate('/signin', {replace: true});

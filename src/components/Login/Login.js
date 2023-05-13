@@ -13,16 +13,16 @@ function Login({ onLogin, isLoginResponse }) {
 
   return (
     <LoginAndRegister title="Рады видеть!" paragraph="Ещё не зарегистрированы?" link="/signup" linkText="Регистрация">
-      <LoginAndRegisterForm isValid={isValid} name={'login'} buttonText="Войти" onSubmit={handleSubmit}>
+      <LoginAndRegisterForm isValid={isValid} name={'login'} buttonText="Войти" handleSubmit={handleSubmit}>
         <div className="form">
-          <label className={errors.emailUser ? "form__input form__input_type_error" : "form__input"} htmlFor="email">E-mail</label>
-          <input id="email" className="form__input" name="email" type="email" minLength="2" required />
-          <span className="form__text-error"></span>
+          <label className="form__input-name" htmlFor="emailUserLogin">E-mail</label>
+          <input id="emailUserLogin" className={errors.emailUserLogin ? "form__input form__input_type_error" : "form__input"} name="emailUserLogin" type="email" minLength="2" required onChange={handleChange} />
+          <span className="form__text-error">{errors.emailUserLogin}</span>
         </div>
         <div className="form">
-          <label className="form__input-name" htmlFor="password">Пароль</label>
-          <input id="password" name="password" type="password" className="form__input form__input_type_error" minLength="2" required />
-          <span className="form__text-error">Что-то пошло не так...</span>
+          <label className="form__input-name" htmlFor="passwordUserLogin">Пароль</label>
+          <input id="passwordUserLogin" name="passwordUserLogin" type="password" className={errors.passwordUserLogin ? "form__input form__input_type_error" : "form__input"} minLength="2" required onChange={handleChange} />
+          <span className="form__text-error">{errors.passwordUserLogin}</span>
         </div>
         <p className="error">
           {isLoginResponse}
