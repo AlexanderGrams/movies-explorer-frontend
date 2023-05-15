@@ -27,18 +27,13 @@ function App() {
 
   const navigate = useNavigate();
 
-
-  // Авторизация
-  function handleLogin(values, resetForm, setButtonLoading) {
-    // setLoadingBoolean(false);
-
-    const {emailUserLogin, passwordUserLogin} = values
-    authorize(emailUserLogin, passwordUserLogin)
+  function onLogin(email, pasword, resetForm, setButtonLoading){
+    return authorize(email, pasword)
       .then((res)=>{
         localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
         setIsLoginResponse("");
-        navigate('/profile', {replace: true});
+        navigate('/movies', {replace: true});
       })
       .catch((err) => {
         console.log(err)
@@ -53,13 +48,19 @@ function App() {
       })
   }
 
+  // Авторизация
+  function handleLogin(values, resetForm, setButtonLoading) {
+    // setLoadingBoolean(false);
+    onLogin(values.emailUserLogin, values.passwordUserLogin, resetForm, setButtonLoading);
+  }
+
   // Регистрация
   function handleRegister(values, resetForm, setButtonLoading){
     const { nameUserRegister, emailUserRegister, passwordUserRegister } = values
     register(nameUserRegister, emailUserRegister, passwordUserRegister)
       .then(()=>{
         setIsRegisterResponse("");
-        navigate('/signin', {replace: true});
+        return onLogin(values.emailUserRegister, values.passwordUserRegister, resetForm, setButtonLoading);
       })
       .catch((err) => {
         console.log(err)
