@@ -9,15 +9,26 @@ import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import { register, authorize, getContent } from "../../utils/auth";
+import {CurrentUserContext} from "../../contexts/CurrentUserContext";
+import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
+import { apiUser } from "../../utils/ApiUser";
 
 function App() {
+  // Авторизация пользователя
   const [loggedIn, setLoggedIn] = useState(false);
+  // Ответ ошибки при регистрации
   const [isRegisterResponse, setIsRegisterResponse] = useState('');
+  // Ответ ошибки при логине
   const [isLoginResponse, setIsLoginResponse] = useState('');
+  // Ответ редактирование информации
+  const [isProfileResponse, setIsProfileResponse] = useState('');
+  // Данные пользователя
+  const [currentUser, setCurrentUser] = useState({});
 
   const navigate = useNavigate();
 
 
+  // Авторизация
   function handleLogin(values, resetForm, setButtonLoading) {
     // setLoadingBoolean(false);
 
@@ -27,7 +38,7 @@ function App() {
         localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
         setIsLoginResponse("");
-        navigate('/movies', {replace: true});
+        navigate('/profile', {replace: true});
       })
       .catch((err) => {
         console.log(err)
@@ -42,6 +53,7 @@ function App() {
       })
   }
 
+  // Регистрация
   function handleRegister(values, resetForm, setButtonLoading){
     const { nameUserRegister, emailUserRegister, passwordUserRegister } = values
     register(nameUserRegister, emailUserRegister, passwordUserRegister)
@@ -62,6 +74,11 @@ function App() {
       })
   }
 
+
+  useEffect(()=>{
+    tokenCheck();
+  }, [loggedIn]);
+
   useEffect(()=>{
     tokenCheck();
   }, [])
@@ -72,7 +89,12 @@ function App() {
       getContent(jwt)
         .then((res) => {
           setLoggedIn(true);
-          navigate("/movies", {replace: true});
+          navigate("/", {replace: true});
+          setCurrentUser({
+            userId: res._id,
+            email: res.email,
+            name: res.name,
+          })
         })
         .catch((err) => {
           console.log(err);
@@ -83,31 +105,68 @@ function App() {
     }
   }
 
+  // Выход из учетной записи
+  function signOut() {
+    localStorage.removeItem('jwt');
+    navigate('/signin');
+    setLoggedIn(false);
+    setCurrentUser({});
+  }
+
+  function handleUpdateUser(values, resetForm, setButtonLoading, setIsActiveEditProfile){
+    const { nameProfile, emailProfile } = values;
+    apiUser.giveInfoUser(emailProfile, nameProfile)
+      .then(res => {
+        setIsProfileResponse("")
+        setCurrentUser({
+          userId: res._id,
+          email: res.email,
+          name: res.name,
+        });
+        setIsActiveEditProfile(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        if(err === "Ошибка: 409"){
+          return setIsProfileResponse("Электронный адрес уже занят")
+        }
+        if(err === "Ошибка: 400"){
+          return setIsProfileResponse("Переданы некорректные данные")
+        }
+        setIsProfileResponse("Что-то пошло не так! Попробуйте ещё раз.")
+      })
+      .finally(()=>{
+        setButtonLoading(false);
+      });
+  }
+
   return (
     <div className="page">
-      <Routes>
-        <Route path="/" element={
-          <Main loggedIn={loggedIn}/>
-        }/>
-        <Route path="/signup" element={
-          <Register onRegister={handleRegister} isRegisterResponse={isRegisterResponse}/>
-        }/>
-        <Route path="/signin" element={
-          <Login onLogin={handleLogin} isLoginResponse={isLoginResponse} />
-        }/>
-        <Route path="/movies" element={
-          <Movies loggedIn={loggedIn}/>
-        }/>
-        <Route path="/saved-movies" element={
-          <SavedMovies loggedIn={loggedIn}/>
-        }/>
-        <Route path="/profile" element={
-          <Profile loggedIn={loggedIn}/>
-        }/>
-        <Route path="*" element={
-          <NotFound />
-        }/>
-      </Routes>
+      <CurrentUserContext.Provider value={currentUser}>
+        <Routes>
+          <Route path="/" element={
+            <Main loggedIn={loggedIn}/>
+          }/>
+          <Route path="/signup" element={
+            <Register onRegister={handleRegister} isRegisterResponse={isRegisterResponse} />
+          }/>
+          <Route path="/signin" element={
+            <Login onLogin={handleLogin} isLoginResponse={isLoginResponse} />
+          }/>
+          <Route path="/movies" element={
+            <ProtectedRouteElement component={Movies} loggedIn={loggedIn} />
+          }/>
+          <Route path="/saved-movies" element={
+            <ProtectedRouteElement component={SavedMovies} loggedIn={loggedIn} />
+          }/>
+          <Route path="/profile" element={
+            <ProtectedRouteElement onUpdateUser={handleUpdateUser} component={Profile} loggedIn={loggedIn} signOut={signOut} isProfileResponse={isProfileResponse} setIsProfileResponse={setIsProfileResponse} />
+          }/>
+          <Route path="*" element={
+            <NotFound />
+          }/>
+        </Routes>
+      </CurrentUserContext.Provider>
     </div>
   );
 }

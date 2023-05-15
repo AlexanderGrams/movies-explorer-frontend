@@ -76,6 +76,7 @@
 
 
   &__input-error
+    margin: 0 0 20px
     width: 100%
     min-height: 14px
     font-family: 'Inter'
@@ -128,7 +129,25 @@
     &:hover
       opacity: 0.8
 
-  &__link
+    &_disabled
+      width: 100%
+      padding: 14px 0
+      margin: 0
+      border-radius: 3px
+      border: none
+      font-family: 'Inter'
+      font-style: normal
+      font-weight: 400
+      font-size: 14px
+      line-height: 1.21
+      background: #F8F8F8
+      color: #C2C2C2
+      cursor: default
+
+  &__button-Out
+    display: inline
+    border: none
+    background: transparent
     padding: 0
     margin: 0
     text-decoration: none
@@ -140,10 +159,24 @@
     text-align: center
     color: var(--accent-color-focus)
     cursor: pointer
-    transition: opacity 0.3s ease
+    transition: opacity 0.1s ease
 
     &:hover
       opacity: 0.7
+
+.loading-btn
+  width: 100%
+  margin: 0
+  padding: 0
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 45px
+  background: var(--accent-color-btn)
+
+  &__img
+    width: 48px
+    height: 12px
 
 @media screen and (max-width: 768px)
   .profile
@@ -171,6 +204,6 @@
       font-size: 12px
       line-height: 1.25
 
-    &__link
+    &__button-Out
       font-size: 12px
       line-height: 1.25
