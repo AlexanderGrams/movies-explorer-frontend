@@ -20,6 +20,8 @@ function App() {
   const [isRegisterResponse, setIsRegisterResponse] = useState('');
   // Ответ ошибки при логине
   const [isLoginResponse, setIsLoginResponse] = useState('');
+  // Ответ редактирование информации
+  const [isProfileResponse, setIsProfileResponse] = useState('');
   // Данные пользователя
   const [currentUser, setCurrentUser] = useState({});
 
@@ -111,18 +113,30 @@ function App() {
     setCurrentUser({});
   }
 
-  function handleUpdateUser({nameUser, activity, resetForm}, setButtonLoading){
-    apiUser.giveInfoUser(nameUser, activity)
-      .then(userInfo => {
-        setCurrentUser(userInfo);
-        // closeAllPopups();
-        resetForm();
+  function handleUpdateUser(values, resetForm, setButtonLoading, setIsActiveEditProfile){
+    const { nameProfile, emailProfile } = values;
+    apiUser.giveInfoUser(emailProfile, nameProfile)
+      .then(res => {
+        setIsProfileResponse("")
+        setCurrentUser({
+          userId: res._id,
+          email: res.email,
+          name: res.name,
+        });
+        setIsActiveEditProfile(false);
       })
       .catch((err) => {
         console.log(err);
+        if(err === "Ошибка: 409"){
+          return setIsProfileResponse("Электронный адрес уже занят")
+        }
+        if(err === "Ошибка: 400"){
+          return setIsProfileResponse("Переданы некорректные данные")
+        }
+        setIsProfileResponse("Что-то пошло не так! Попробуйте ещё раз.")
       })
       .finally(()=>{
-        setButtonLoading(false)
+        setButtonLoading(false);
       });
   }
 
@@ -134,7 +148,7 @@ function App() {
             <Main loggedIn={loggedIn}/>
           }/>
           <Route path="/signup" element={
-            <Register onRegister={handleRegister} isRegisterResponse={isRegisterResponse}/>
+            <Register onRegister={handleRegister} isRegisterResponse={isRegisterResponse} />
           }/>
           <Route path="/signin" element={
             <Login onLogin={handleLogin} isLoginResponse={isLoginResponse} />
@@ -146,7 +160,7 @@ function App() {
             <ProtectedRouteElement component={SavedMovies} loggedIn={loggedIn} />
           }/>
           <Route path="/profile" element={
-            <ProtectedRouteElement onUpdateUser={handleUpdateUser} component={Profile} loggedIn={loggedIn} signOut={signOut}/>
+            <ProtectedRouteElement onUpdateUser={handleUpdateUser} component={Profile} loggedIn={loggedIn} signOut={signOut} isProfileResponse={isProfileResponse} setIsProfileResponse={setIsProfileResponse} />
           }/>
           <Route path="*" element={
             <NotFound />
