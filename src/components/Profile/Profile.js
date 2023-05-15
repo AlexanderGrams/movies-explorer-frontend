@@ -3,7 +3,7 @@ import "./profile.sass"
 import { useState, useContext } from "react";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext.js"
 
-function Profile({ loggedIn, signOut }) {
+function Profile({ loggedIn, signOut, onUpdateUser }) {
   const [isActiveEditProfile, setIsActiveEditProfile] = useState(false);
 
   const currentUserData = useContext(CurrentUserContext);

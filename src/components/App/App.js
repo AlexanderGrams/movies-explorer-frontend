@@ -11,6 +11,7 @@ import Login from "../Login/Login";
 import { register, authorize, getContent } from "../../utils/auth";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
+import { apiUser } from "../../utils/ApiUser";
 
 function App() {
   // Авторизация пользователя
@@ -25,6 +26,7 @@ function App() {
   const navigate = useNavigate();
 
 
+  // Авторизация
   function handleLogin(values, resetForm, setButtonLoading) {
     // setLoadingBoolean(false);
 
@@ -35,11 +37,6 @@ function App() {
         setLoggedIn(true);
         setIsLoginResponse("");
         navigate('/profile', {replace: true});
-        // setCurrentUser({
-        //   userId: res._id,
-        //   email: res.email,
-        //   name: res.name,
-        // })
       })
       .catch((err) => {
         console.log(err)
@@ -54,6 +51,7 @@ function App() {
       })
   }
 
+  // Регистрация
   function handleRegister(values, resetForm, setButtonLoading){
     const { nameUserRegister, emailUserRegister, passwordUserRegister } = values
     register(nameUserRegister, emailUserRegister, passwordUserRegister)
@@ -73,6 +71,11 @@ function App() {
         setButtonLoading(false);
       })
   }
+
+
+  useEffect(()=>{
+    tokenCheck();
+  }, [loggedIn]);
 
   useEffect(()=>{
     tokenCheck();
@@ -100,11 +103,27 @@ function App() {
     }
   }
 
+  // Выход из учетной записи
   function signOut() {
     localStorage.removeItem('jwt');
     navigate('/signin');
     setLoggedIn(false);
     setCurrentUser({});
+  }
+
+  function handleUpdateUser({nameUser, activity, resetForm}, setButtonLoading){
+    apiUser.giveInfoUser(nameUser, activity)
+      .then(userInfo => {
+        setCurrentUser(userInfo);
+        // closeAllPopups();
+        resetForm();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(()=>{
+        setButtonLoading(false)
+      });
   }
 
   return (
@@ -127,7 +146,7 @@ function App() {
             <ProtectedRouteElement component={SavedMovies} loggedIn={loggedIn} />
           }/>
           <Route path="/profile" element={
-            <ProtectedRouteElement component={Profile} loggedIn={loggedIn} signOut={signOut}/>
+            <ProtectedRouteElement onUpdateUser={handleUpdateUser} component={Profile} loggedIn={loggedIn} signOut={signOut}/>
           }/>
           <Route path="*" element={
             <NotFound />
