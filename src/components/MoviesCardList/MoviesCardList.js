@@ -9,7 +9,7 @@ function MoviesCardList({ locationSavedPage, currentMovies }) {
           {
             currentMovies.map(card => {
               return (
-                <MoviesCard title={card.nameRU} time={card.duration} img={`https://api.nomoreparties.co${card.image.url}`} alt={card.nameRU} isLike={false} locationSavedPage={locationSavedPage} key={card.id}/>
+                <MoviesCard title={card.nameRU} time={card.duration} img={card.image.url} alt={card.nameRU} isLike={false} locationSavedPage={locationSavedPage} key={card.id}/>
               )
             })
           }
