@@ -11,7 +11,7 @@ import Login from "../Login/Login";
 import { register, authorize, getContent } from "../../utils/auth";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
-import { apiUser } from "../../utils/ApiUser";
+import { mainApi } from "../../utils/MainApi";
 
 function App() {
   // Авторизация пользователя
@@ -116,7 +116,7 @@ function App() {
 
   function handleUpdateUser(values, resetForm, setButtonLoading, setIsActiveEditProfile){
     const { nameProfile, emailProfile } = values;
-    apiUser.giveInfoUser(emailProfile, nameProfile)
+    mainApi.giveInfoUser(emailProfile, nameProfile)
       .then(res => {
         setIsProfileResponse("")
         setCurrentUser({

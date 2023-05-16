@@ -1,6 +1,6 @@
 import { BASE_URL } from "./constant"
 
-class ApiUser {
+class MainApi {
   constructor({baseUrl}){
     this._baseUrl = baseUrl;
   }
@@ -28,6 +28,6 @@ class ApiUser {
 }
 
 
-export const apiUser = new ApiUser({
+export const mainApi = new MainApi({
   baseUrl: BASE_URL,
 });
