@@ -12,6 +12,7 @@ import { register, authorize, getContent } from "../../utils/auth";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import { mainApi } from "../../utils/MainApi";
+import { moviesApi } from "../../utils/MoviesApi";
 
 function App() {
   // Авторизация пользователя
@@ -24,6 +25,8 @@ function App() {
   const [isProfileResponse, setIsProfileResponse] = useState('');
   // Данные пользователя
   const [currentUser, setCurrentUser] = useState({});
+  //данные фильмов
+  const [currentMovies, setCurrentMovies] = useState([]);
 
   const navigate = useNavigate();
 
@@ -141,6 +144,25 @@ function App() {
       });
   }
 
+  useEffect(()=>{
+    if(loggedIn){
+      Promise.all([
+        moviesApi.getInitialCards()
+        // api.getInitialCards()
+      ])
+        .then(([movies]) => {
+          // setCurrentUser(info);
+          setCurrentMovies(movies);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(()=>{
+          // setLoadingBoolean(true);
+        });
+    }
+  }, [loggedIn])
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
@@ -155,7 +177,7 @@ function App() {
             <Login onLogin={handleLogin} isLoginResponse={isLoginResponse} />
           }/>
           <Route path="/movies" element={
-            <ProtectedRouteElement component={Movies} loggedIn={loggedIn} />
+            <ProtectedRouteElement component={Movies} loggedIn={loggedIn} currentMovies={currentMovies} />
           }/>
           <Route path="/saved-movies" element={
             <ProtectedRouteElement component={SavedMovies} loggedIn={loggedIn} />

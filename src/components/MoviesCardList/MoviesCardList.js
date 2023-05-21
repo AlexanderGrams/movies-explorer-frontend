@@ -1,14 +1,18 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 import "./moviescardlist.sass"
-import images from "../../images/movies-card__image.jpg"
 
-function MoviesCardList({ locationSavedPage }) {
+function MoviesCardList({ locationSavedPage, currentMovies }) {
   return (
     <section className="card-list">
       <div className="card-list__wrap">
         <ul className="card-list__movies">
-          <MoviesCard title='33 слова о дизайне' time='1ч 42м' img={images} alt='какое-то описание' isLike={true} locationSavedPage={locationSavedPage}/>
-          <MoviesCard title='33 слова о дизайне' time='1ч 42м' img={images} alt='какое-то описание' isLike={false} locationSavedPage={locationSavedPage}/>
+          {
+            currentMovies.map(card => {
+              return (
+                <MoviesCard title={card.nameRU} time={card.duration} img={card.image.url} alt={card.nameRU} isLike={false} locationSavedPage={locationSavedPage} key={card.id}/>
+              )
+            })
+          }
         </ul>
         {
           locationSavedPage
