@@ -12,7 +12,7 @@ class MoviesApi {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  getInitialCards() {
+  getInitialMovies() {
     return fetch(`${this._moviesUrl}`, {
       headers: {
         "Accept": "application/json",

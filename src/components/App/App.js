@@ -147,7 +147,7 @@ function App() {
   useEffect(()=>{
     if(loggedIn){
       Promise.all([
-        moviesApi.getInitialCards()
+        moviesApi.getInitialMovies()
         // api.getInitialCards()
       ])
         .then(([movies]) => {

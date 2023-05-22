@@ -25,6 +25,15 @@ class MainApi {
       })
     }).then(this._checkResponse)
   }
+
+  getSavedMovies() {
+    return fetch(`${this._baseUrl}/movies`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json'
+      }
+    }).then(this._checkResponse)
+  }
 }
 
 
