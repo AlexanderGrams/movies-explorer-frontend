@@ -24,9 +24,8 @@ function SavedMovies({loggedIn}) {
     setIsLoading(true);
     mainApi.getSavedMovies()
       .then((serverMovies) => {
-        const savedMovies = serverMovies.filter((movie) => movie.isSaved);
-        setSourceMovies(savedMovies);
-        filterMovies(savedSearch, savedMovies);
+        setSourceMovies(serverMovies);
+        filterMovies(savedSearch, serverMovies);
       })
       .catch((err) => {
         console.log(err);
@@ -38,12 +37,21 @@ function SavedMovies({loggedIn}) {
   }, [])
 
   const onClickRemove = (movie) => mainApi.deletMovie(movie)
+    .then((deletedMovie) => {
+      const updateMovies = sourceMovies.filter((film) => film._id !== deletedMovie.deletedMovie._id)
+      setSourceMovies(updateMovies);
+      filterMovies(savedSearch, updateMovies);
+    })
+    .catch((err) => {
+      console.log(err);
+      setApiHasError(true);
+    })
 
   return (
     <MainBlocks loggedIn={loggedIn} isMainPages={true}>
       <main className="saved-movies">
         <SearchForm />
-        <MoviesCardList locationSavedPage={true} currentMovies={filteredMovies} />
+        <MoviesCardList locationSavedPage={true} currentMovies={filteredMovies} onClickRemove={onClickRemove} />
       </main>
     </MainBlocks>
   );

@@ -24,7 +24,7 @@ class MainApi {
         "name": name,
       })
     }).then(this._checkResponse)
-  }
+  };
 
   getSavedMovies() {
     return fetch(`${this._baseUrl}/movies`, {
@@ -33,7 +33,18 @@ class MainApi {
         'Content-Type': 'application/json'
       }
     }).then(this._checkResponse)
-  }
+  };
+
+  deletMovie(movieId){
+    return fetch(`${this._baseUrl}/movies/${movieId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json'
+      }
+    }).then(this._checkResponse)
+  };
+
 }
 
 
