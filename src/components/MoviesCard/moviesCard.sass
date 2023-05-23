@@ -1,11 +1,16 @@
 .movies-card
-  box-sizing: border-box
   width: 100%
+  box-sizing: border-box
   background: var(--additional-bg-color)
   padding: 6px 6px 6px 22px
   display: flex
   justify-content: space-between
   align-items: center
+
+  &__link
+    margin: 0 0 0 20px
+    text-decoration: none
+    display: flex
 
   &__info
     margin: 16px 0
@@ -53,7 +58,7 @@
     background: url(../../images/movies-card__delete.svg) center/ cover no-repeat
 
   &__image
-    margin: 0 0 0 20px
+    margin: 0
     width: 100%
     max-width: 220px
     height: 122px
