@@ -1,7 +1,7 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 import "./moviescardlist.sass"
 
-function MoviesCardList({ locationSavedPage, currentMovies, onClickRemove }) {
+function MoviesCardList({ locationSavedPage, currentMovies, onClickUpdate, loadMore, hasMore }) {
   return (
     <section className="card-list">
       <div className="card-list__wrap">
@@ -11,21 +11,27 @@ function MoviesCardList({ locationSavedPage, currentMovies, onClickRemove }) {
             ?
             currentMovies.map(movie => {
               return (
-                <MoviesCard movie={movie} isLike={false} locationSavedPage={locationSavedPage} key={movie.id || movie.movieId} onClickRemove={onClickRemove} />
+                <MoviesCard movie={movie} isLike={movie.isSaved} locationSavedPage={locationSavedPage} key={movie.id || movie.movieId} onClickUpdate={onClickUpdate} />
               )
             })
             :
             <p className="card-list__text">
-              Фильмы не найдены
+              {
+                locationSavedPage
+                ?
+                "Фильмы не найдены"
+                :
+                "Введите фильм в поиск"
+              }
             </p>
           }
         </ul>
         {
-          locationSavedPage
+          ((!locationSavedPage) && hasMore)
           ?
-          <></>
+          <button className="card-list__button" onClick={loadMore}>Ещё</button>
           :
-          <button className="card-list__button">Ещё</button>
+          <></>
         }
       </div>
     </section>

@@ -1,12 +1,11 @@
 import "./moviesCard.sass"
 
-function MoviesCard({ movie, isLike, locationSavedPage, onClickRemove}) {
+function MoviesCard({ movie, isLike, locationSavedPage, onClickUpdate}) {
   const buttonClassName = locationSavedPage ? "movies-card__like movies-card__delete" : (isLike ? "movies-card__like movies-card__like_type_active" : "movies-card__like" );
 
   const buttonEventHendler = (e) => {
-    if(locationSavedPage){
-      return onClickRemove(movie._id);
-    }
+    console.log(movie)
+    return onClickUpdate(movie);
   }
 
   const imgUrl = locationSavedPage ? movie.image : `https://api.nomoreparties.co${movie.image.url}`;
