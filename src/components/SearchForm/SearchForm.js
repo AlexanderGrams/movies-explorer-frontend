@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./searchForm.sass"
 
 function SearchForm({setSavedSearch, savedSearch}) {
   const [isActive, setIsActive] = useState(false)
+
+  const inputRef = useRef();
+
+  function handlerSubmit(e) {
+    e.preventDefault()
+    setSavedSearch({ film: inputRef.current.value, shorts: savedSearch.shorts })
+  }
 
   function handlerClick() {
     if(isActive) {
@@ -17,8 +24,8 @@ function SearchForm({setSavedSearch, savedSearch}) {
   return (
     <section className="search-form" aria-label="поиск фильмов">
       <div className="search-form__wrap">
-        <form className="search-form__container">
-          <input className="search-form__input" placeholder="Фильм" type="text" required></input>
+        <form className="search-form__container" onSubmit={handlerSubmit}>
+          <input ref={inputRef} className="search-form__input" placeholder="Фильм" type="text" required></input>
           <button className="search-form__button" type="submit" aria-label="Кнопка найти">Найти</button>
         </form>
         <div className="search-form__control">
