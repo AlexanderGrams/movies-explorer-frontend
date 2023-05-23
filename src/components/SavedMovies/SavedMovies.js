@@ -58,7 +58,7 @@ function SavedMovies({loggedIn}) {
           ?
           <Preloader />
           :
-          <MoviesCardList locationSavedPage={true} currentMovies={filteredMovies} onClickRemove={onClickRemove} />
+          <MoviesCardList locationSavedPage={true} currentMovies={filteredMovies} onClickUpdate={onClickRemove} />
         }
       </main>
     </MainBlocks>

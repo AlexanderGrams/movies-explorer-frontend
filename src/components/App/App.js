@@ -83,17 +83,13 @@ function App() {
     tokenCheck();
   }, [loggedIn]);
 
-  useEffect(()=>{
-    tokenCheck();
-  }, [])
-
   function tokenCheck(){
     const jwt = localStorage.getItem('jwt');
     if(jwt){
       getContent(jwt)
         .then((res) => {
           setLoggedIn(true);
-          navigate("/", {replace: true});
+          navigate("/movies", {replace: true});
           setCurrentUser({
             userId: res._id,
             email: res.email,
@@ -143,25 +139,6 @@ function App() {
         setButtonLoading(false);
       });
   }
-
-  // useEffect(()=>{
-  //   if(loggedIn){
-  //     Promise.all([
-  //       moviesApi.getInitialMovies()
-  //       // api.getInitialCards()
-  //     ])
-  //       .then(([movies]) => {
-  //         // setCurrentUser(info);
-  //         setCurrentMovies(movies);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       })
-  //       .finally(()=>{
-  //         // setLoadingBoolean(true);
-  //       });
-  //   }
-  // }, [loggedIn])
 
   return (
     <div className="page">
