@@ -5,6 +5,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import "./movies.sass";
 import {moviesApi} from "../../utils/MoviesApi";
 import {calcCardsCounter} from "../../utils/constant";
+import Preloader from "../Preloader/Preloader";
 
 function Movies({loggedIn}) {
   const [sourceMovies, setSourceMovies] = useState([]);
@@ -72,7 +73,13 @@ function Movies({loggedIn}) {
     <MainBlocks loggedIn={loggedIn} isMainPages={true}>
       <main className="movies">
         <SearchForm loadCards={loadCards} savedSearch={savedSearch} setSavedSearch={setSavedSearch} />
-        <MoviesCardList currentMovies={filteredMovies.slice(0, cardsCounter)} loadMore={loadMore} hasMore={filteredMovies.length > cardsCounter} />
+        {
+          isLoading
+          ?
+          <Preloader />
+          :
+          <MoviesCardList currentMovies={filteredMovies.slice(0, cardsCounter)} loadMore={loadMore} hasMore={filteredMovies.length > cardsCounter} />
+        }
       </main>
     </MainBlocks>
   );
