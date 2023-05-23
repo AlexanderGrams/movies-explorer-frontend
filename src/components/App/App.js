@@ -26,7 +26,7 @@ function App() {
   // Данные пользователя
   const [currentUser, setCurrentUser] = useState({});
   //данные фильмов
-  const [currentMovies, setCurrentMovies] = useState([]);
+  // const [currentMovies, setCurrentMovies] = useState([]);
 
   const navigate = useNavigate();
 
@@ -144,24 +144,24 @@ function App() {
       });
   }
 
-  useEffect(()=>{
-    if(loggedIn){
-      Promise.all([
-        moviesApi.getInitialMovies()
-        // api.getInitialCards()
-      ])
-        .then(([movies]) => {
-          // setCurrentUser(info);
-          setCurrentMovies(movies);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(()=>{
-          // setLoadingBoolean(true);
-        });
-    }
-  }, [loggedIn])
+  // useEffect(()=>{
+  //   if(loggedIn){
+  //     Promise.all([
+  //       moviesApi.getInitialMovies()
+  //       // api.getInitialCards()
+  //     ])
+  //       .then(([movies]) => {
+  //         // setCurrentUser(info);
+  //         setCurrentMovies(movies);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       })
+  //       .finally(()=>{
+  //         // setLoadingBoolean(true);
+  //       });
+  //   }
+  // }, [loggedIn])
 
   return (
     <div className="page">
@@ -177,7 +177,7 @@ function App() {
             <Login onLogin={handleLogin} isLoginResponse={isLoginResponse} />
           }/>
           <Route path="/movies" element={
-            <ProtectedRouteElement component={Movies} loggedIn={loggedIn} currentMovies={currentMovies} />
+            <ProtectedRouteElement component={Movies} loggedIn={loggedIn} />
           }/>
           <Route path="/saved-movies" element={
             <ProtectedRouteElement component={SavedMovies} loggedIn={loggedIn} />

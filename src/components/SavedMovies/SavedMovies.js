@@ -11,7 +11,6 @@ function SavedMovies({loggedIn}) {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [savedSearch, setSavedSearch] = useState({ film: '', shorts: false });
   const [isLoading, setIsLoading] = useState(false);
-  const [apiHasError, setApiHasError] = useState(false);
 
   const filterMovies = (search, films) => {
     setSavedSearch(search);
@@ -34,7 +33,6 @@ function SavedMovies({loggedIn}) {
       })
       .catch((err) => {
         console.log(err);
-        setApiHasError(true);
       })
       .finally(()=>{
         setIsLoading(false);
@@ -49,7 +47,6 @@ function SavedMovies({loggedIn}) {
     })
     .catch((err) => {
       console.log(err);
-      setApiHasError(true);
     })
 
   return (
