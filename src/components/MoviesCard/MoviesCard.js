@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./moviesCard.sass"
 
 function MoviesCard({ movie, isLike, locationSavedPage, onClickRemove}) {
@@ -28,7 +27,9 @@ function MoviesCard({ movie, isLike, locationSavedPage, onClickRemove}) {
         <p className="movies-card__subtitle">{editerTtime()}</p>
         <button className={buttonClassName} onClick={buttonEventHendler}></button>
       </div>
-      <img className="movies-card__image" src={imgUrl} alt={movie.nameRU} />
+      <a href={movie.trailerLink} className="movies-card__link">
+        <img className="movies-card__image" src={imgUrl} alt={movie.nameRU} />
+      </a>
     </li>
   );
 }
