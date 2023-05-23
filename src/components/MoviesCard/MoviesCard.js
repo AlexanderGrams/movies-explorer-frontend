@@ -4,7 +4,6 @@ function MoviesCard({ movie, isLike, locationSavedPage, onClickUpdate}) {
   const buttonClassName = locationSavedPage ? "movies-card__like movies-card__delete" : (isLike ? "movies-card__like movies-card__like_type_active" : "movies-card__like" );
 
   const buttonEventHendler = (e) => {
-    console.log(movie)
     return onClickUpdate(movie);
   }
 
