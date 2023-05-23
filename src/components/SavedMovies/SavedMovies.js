@@ -4,6 +4,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 import "./savedMovies.sass";
 import { mainApi } from "../../utils/MainApi";
+import Preloader from "../Preloader/Preloader";
 
 function SavedMovies({loggedIn}) {
   const [sourceMovies, setSourceMovies] = useState([]);
@@ -19,6 +20,10 @@ function SavedMovies({loggedIn}) {
       return search.shorts ? (isValidName && movie.duration <= 40) : isValidName;
     }))
   }
+
+  useEffect(() => {
+    filterMovies(savedSearch, sourceMovies)
+  }, [savedSearch]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -50,8 +55,14 @@ function SavedMovies({loggedIn}) {
   return (
     <MainBlocks loggedIn={loggedIn} isMainPages={true}>
       <main className="saved-movies">
-        <SearchForm />
-        <MoviesCardList locationSavedPage={true} currentMovies={filteredMovies} onClickRemove={onClickRemove} />
+        <SearchForm setSavedSearch={setSavedSearch} savedSearch={savedSearch} />
+        {
+          isLoading
+          ?
+          <Preloader />
+          :
+          <MoviesCardList locationSavedPage={true} currentMovies={filteredMovies} onClickRemove={onClickRemove} />
+        }
       </main>
     </MainBlocks>
   );

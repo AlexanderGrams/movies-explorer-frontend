@@ -4,10 +4,6 @@ import "./moviesCard.sass"
 function MoviesCard({ movie, isLike, locationSavedPage, onClickRemove}) {
   const buttonClassName = locationSavedPage ? "movies-card__like movies-card__delete" : (isLike ? "movies-card__like movies-card__like_type_active" : "movies-card__like" );
 
-  // console.log(movie._id)
-
-  // const idCard = movie.id || movie.movieId
-
   const buttonEventHendler = (e) => {
     if(locationSavedPage){
       return onClickRemove(movie._id);

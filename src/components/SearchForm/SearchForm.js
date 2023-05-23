@@ -1,15 +1,16 @@
 import { useState } from "react";
 import "./searchForm.sass"
 
-function SearchForm() {
+function SearchForm({setSavedSearch, savedSearch}) {
   const [isActive, setIsActive] = useState(false)
-
 
   function handlerClick() {
     if(isActive) {
       setIsActive(false)
+      setSavedSearch({ film: savedSearch.film, shorts: false })
     } else {
       setIsActive(true)
+      setSavedSearch({ film: savedSearch.film, shorts: true })
     }
   }
 
