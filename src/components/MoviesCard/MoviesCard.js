@@ -25,7 +25,7 @@ function MoviesCard({ movie, isLike, locationSavedPage, onClickUpdate}) {
         <p className="movies-card__subtitle">{editerTtime()}</p>
         <button className={buttonClassName} onClick={buttonEventHendler}></button>
       </div>
-      <a href={movie.trailerLink} className="movies-card__link">
+      <a href={movie.trailerLink} className="movies-card__link" target="_blank">
         <img className="movies-card__image" src={imgUrl} alt={movie.nameRU} />
       </a>
     </li>

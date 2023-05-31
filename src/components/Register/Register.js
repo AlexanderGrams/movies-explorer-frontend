@@ -2,6 +2,7 @@ import LoginAndRegister from "../LoginAndRegister/LoginAndRegister";
 import LoginAndRegisterForm from "../LoginAndRegisterForm/LoginAndRegisterForm";
 import "./register.sass"
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
+import { PATTERN_EMAIL } from "../../utils/constant.js";
 
 function Register({ onRegister, isRegisterResponse }) {
   const {values, resetForm, handleChange, errors, isValid} = useFormAndValidation();
@@ -21,7 +22,7 @@ function Register({ onRegister, isRegisterResponse }) {
         </div>
         <div className="form">
           <label className="form__input-name" htmlFor="emailUserRegister">E-mail</label>
-          <input id="emailUserRegister" className={errors.emailUserRegister ? "form__input form__input_type_error" : "form__input"} name="emailUserRegister" type="email" minLength="2" required onChange={handleChange}/>
+          <input id="emailUserRegister" className={errors.emailUserRegister ? "form__input form__input_type_error" : "form__input"} name="emailUserRegister" type="email" pattern={PATTERN_EMAIL} minLength="2" required onChange={handleChange}/>
           <span className="form__text-error">{errors.emailUserRegister}</span>
         </div>
         <div className="form">

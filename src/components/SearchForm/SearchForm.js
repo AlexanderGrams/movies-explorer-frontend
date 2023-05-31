@@ -1,10 +1,17 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./searchForm.sass"
 
 function SearchForm({setSavedSearch, savedSearch}) {
+  // Состояние кнопки короткометражек
   const [isActive, setIsActive] = useState(false)
 
   const inputRef = useRef();
+
+  // Заполнение формы данными из предыдущего поиска
+  useEffect(() => {
+    setIsActive(savedSearch.shorts);
+    inputRef.current.value = savedSearch.film;
+  }, [])
 
   function handlerSubmit(e) {
     e.preventDefault()

@@ -108,16 +108,17 @@ function App() {
   // Выход из учетной записи
   function signOut() {
     localStorage.removeItem('jwt');
-    navigate('/signin');
+    localStorage.removeItem('search');
+    navigate('/');
     setLoggedIn(false);
     setCurrentUser({});
   }
 
-  function handleUpdateUser(values, resetForm, setButtonLoading, setIsActiveEditProfile){
+  function handleUpdateUser(values, setButtonLoading, setIsActiveEditProfile){
     const { nameProfile, emailProfile } = values;
     mainApi.giveInfoUser(emailProfile, nameProfile)
       .then(res => {
-        setIsProfileResponse("")
+        setIsProfileResponse("Данные обнавлены успешно")
         setCurrentUser({
           userId: res._id,
           email: res.email,
@@ -147,12 +148,8 @@ function App() {
           <Route path="/" element={
             <Main loggedIn={loggedIn}/>
           }/>
-          <Route path="/signup" element={
-            <Register onRegister={handleRegister} isRegisterResponse={isRegisterResponse} />
-          }/>
-          <Route path="/signin" element={
-            <Login onLogin={handleLogin} isLoginResponse={isLoginResponse} />
-          }/>
+          {!loggedIn&&<Route path="/signin" element={<Login onLogin={handleLogin} isLoginResponse={isLoginResponse} />}/>}
+          {!loggedIn&&<Route path="/signup" element={<Register onRegister={handleRegister} isRegisterResponse={isRegisterResponse} />}/>}
           <Route path="/movies" element={
             <ProtectedRouteElement component={Movies} loggedIn={loggedIn} />
           }/>
