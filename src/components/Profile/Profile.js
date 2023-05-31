@@ -15,9 +15,10 @@ function Profile({ loggedIn, signOut, onUpdateUser, isProfileResponse, setIsProf
   const {values, handleChange, setValues, setIsValid, errors, isValid} = useFormAndValidation();
 
   useEffect(() => {
-    if(currentUserData.name === values.nameProfile){
-      setIsValid(false);
+    if(currentUserData.name !== values.nameProfile || currentUserData.email !== values.emailProfile){
+      return setIsValid(true);
     }
+    return setIsValid(false);
   }, [values])
 
   useEffect(() => {
