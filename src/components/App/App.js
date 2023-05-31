@@ -108,6 +108,7 @@ function App() {
   // Выход из учетной записи
   function signOut() {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('search');
     navigate('/signin');
     setLoggedIn(false);
     setCurrentUser({});

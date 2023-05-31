@@ -1,8 +1,14 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./searchForm.sass"
 
 function SearchForm({setSavedSearch, savedSearch}) {
   const [isActive, setIsActive] = useState(false)
+  const [isInputText, setInputText] = useState('')
+
+  useEffect(() => {
+    setIsActive(savedSearch.shorts);
+    inputRef.current.value = savedSearch.film;
+  }, [])
 
   const inputRef = useRef();
 
