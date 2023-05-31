@@ -4,6 +4,7 @@ import { useState, useContext, useEffect } from "react";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import imgLoading from "../../images/loading.gif";
+import { PATTERN_EMAIL } from "../../utils/constant.js";
 
 function Profile({ loggedIn, signOut, onUpdateUser, isProfileResponse, setIsProfileResponse }) {
   const [isActiveEditProfile, setIsActiveEditProfile] = useState(false);
@@ -11,14 +12,23 @@ function Profile({ loggedIn, signOut, onUpdateUser, isProfileResponse, setIsProf
 
   const currentUserData = useContext(CurrentUserContext);
 
-  const {values, handleChange, resetForm, setValues, setIsValid, errors, isValid} = useFormAndValidation();
+  const {values, handleChange, setValues, setIsValid, errors, isValid} = useFormAndValidation();
+
+  useEffect(() => {
+    if(currentUserData.name === values.nameProfile){
+      setIsValid(false);
+    }
+  }, [values])
 
   useEffect(() => {
     if(Object.keys(currentUserData).length !== 0){
       setValues({...values, 'nameProfile': currentUserData.name, 'emailProfile': currentUserData.email});
-      setIsValid(true);
     }
   }, [currentUserData]);
+
+  useEffect(() => {
+    setIsProfileResponse('');
+  }, []);
 
   function hendlerEditProfile(e) {
     e.preventDefault();
@@ -27,7 +37,7 @@ function Profile({ loggedIn, signOut, onUpdateUser, isProfileResponse, setIsProf
       return setIsActiveEditProfile(!isActiveEditProfile)
     };
     setButtonLoading(true);
-    onUpdateUser(values, resetForm, setButtonLoading, setIsActiveEditProfile)
+    onUpdateUser(values, setButtonLoading, setIsActiveEditProfile)
   };
 
   return (
@@ -52,7 +62,7 @@ function Profile({ loggedIn, signOut, onUpdateUser, isProfileResponse, setIsProf
               <div className="profile__form-line"></div>
               <label className="profile__field">
                 E-mail
-                <input className={isActiveEditProfile ? "profile__input profile__input_active" : "profile__input"} id="email-input" type="email" name="emailProfile" required value={values.emailProfile || ''} disabled={isActiveEditProfile ? false : true} onChange={handleChange}/>
+                <input className={isActiveEditProfile ? "profile__input profile__input_active" : "profile__input"} id="email-input" type="email" pattern={PATTERN_EMAIL} name="emailProfile" required value={values.emailProfile || ''} disabled={isActiveEditProfile ? false : true} onChange={handleChange}/>
               </label>
               {
                 isActiveEditProfile
@@ -77,7 +87,10 @@ function Profile({ loggedIn, signOut, onUpdateUser, isProfileResponse, setIsProf
                 </>
               )
               :
-              <button className="profile__button" onClick={hendlerEditProfile}>Редактировать</button>
+              <>
+                <span className="profile__input-res">{isProfileResponse}</span>
+                <button className="profile__button" onClick={hendlerEditProfile}>Редактировать</button>
+              </>
             }
           </form>
           <button onClick={signOut} className="profile__button-Out">Выйти из аккаунта</button>

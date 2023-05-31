@@ -114,11 +114,11 @@ function App() {
     setCurrentUser({});
   }
 
-  function handleUpdateUser(values, resetForm, setButtonLoading, setIsActiveEditProfile){
+  function handleUpdateUser(values, setButtonLoading, setIsActiveEditProfile){
     const { nameProfile, emailProfile } = values;
     mainApi.giveInfoUser(emailProfile, nameProfile)
       .then(res => {
-        setIsProfileResponse("")
+        setIsProfileResponse("Данные обнавлены успешно")
         setCurrentUser({
           userId: res._id,
           email: res.email,
