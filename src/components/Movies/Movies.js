@@ -13,8 +13,8 @@ function Movies({loggedIn}) {
   const [filteredMovies, setFilteredMovies] = useState([]);
 
   const [savedSearch, setSavedSearch] = useState(JSON.parse(
-    localStorage.getItem('search') || '{ "film": "", "shorts": "false" }'
-  ));
+    localStorage.getItem('search')) || { "film": "", "shorts": false }
+ );
   const [isLoading, setIsLoading] = useState(false);
 
   const counter = calcCardsCounter();
