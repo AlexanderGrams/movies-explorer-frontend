@@ -109,7 +109,7 @@ function App() {
   function signOut() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('search');
-    navigate('/signin');
+    navigate('/');
     setLoggedIn(false);
     setCurrentUser({});
   }
