@@ -148,12 +148,8 @@ function App() {
           <Route path="/" element={
             <Main loggedIn={loggedIn}/>
           }/>
-          <Route path="/signup" element={
-            <Register onRegister={handleRegister} isRegisterResponse={isRegisterResponse} />
-          }/>
-          <Route path="/signin" element={
-            <Login onLogin={handleLogin} isLoginResponse={isLoginResponse} />
-          }/>
+          {!loggedIn&&<Route path="/signin" element={<Login onLogin={handleLogin} isLoginResponse={isLoginResponse} />}/>}
+          {!loggedIn&&<Route path="/signup" element={<Register onRegister={handleRegister} isRegisterResponse={isRegisterResponse} />}/>}
           <Route path="/movies" element={
             <ProtectedRouteElement component={Movies} loggedIn={loggedIn} />
           }/>
