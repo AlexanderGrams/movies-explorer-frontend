@@ -1,10 +1,16 @@
 .movies-card
-  box-sizing: border-box
   width: 100%
+  box-sizing: border-box
   background: var(--additional-bg-color)
   padding: 6px 6px 6px 22px
   display: flex
   justify-content: space-between
+  align-items: center
+
+  &__link
+    margin: 0 0 0 20px
+    text-decoration: none
+    display: flex
 
   &__info
     margin: 16px 0
@@ -25,7 +31,6 @@
     margin: 0 0 30px
     padding: 0
     width: 100%
-    max-width: 37px
     font-family: 'Inter'
     font-style: normal
     font-weight: 400
@@ -53,6 +58,7 @@
     background: url(../../images/movies-card__delete.svg) center/ cover no-repeat
 
   &__image
+    margin: 0
     width: 100%
     max-width: 220px
     height: 122px
@@ -63,6 +69,7 @@
     padding: 0
     flex-direction: column-reverse
     justify-content: center
+    align-items: flex-start
 
     &__info
       margin: 14px 16px 14px 12px

@@ -1,46 +1,100 @@
-import { Link } from "react-router-dom";
 import MainBlocks from "../MainBlocks/MainBlocks";
-import "./profile.sass"
-import { useState } from "react";
+import "./profile.sass";
+import { useState, useContext, useEffect } from "react";
+import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
+import imgLoading from "../../images/loading.gif";
+import { PATTERN_EMAIL } from "../../utils/constant.js";
 
-function Profile({loggedIn}) {
+function Profile({ loggedIn, signOut, onUpdateUser, isProfileResponse, setIsProfileResponse }) {
   const [isActiveEditProfile, setIsActiveEditProfile] = useState(false);
+  const [buttonLoading, setButtonLoading] = useState(false);
 
-  function hendlerEditProfile() {
-    setIsActiveEditProfile(!isActiveEditProfile)
-  }
+  const currentUserData = useContext(CurrentUserContext);
 
-  let name = 'Виталий';
-  const email = 'cawa.cerber@gmail.com';
-  let greeting = `Привет, ${name}!`;
+  const {values, handleChange, setValues, setIsValid, errors, isValid} = useFormAndValidation();
+
+  useEffect(() => {
+    if(currentUserData.name !== values.nameProfile || currentUserData.email !== values.emailProfile){
+      return setIsValid(true);
+    }
+    return setIsValid(false);
+  }, [values])
+
+  useEffect(() => {
+    if(Object.keys(currentUserData).length !== 0){
+      setValues({...values, 'nameProfile': currentUserData.name, 'emailProfile': currentUserData.email});
+    }
+  }, [currentUserData]);
+
+  useEffect(() => {
+    setIsProfileResponse('');
+  }, []);
+
+  function hendlerEditProfile(e) {
+    e.preventDefault();
+    if(!isActiveEditProfile) {
+      setIsProfileResponse('');
+      return setIsActiveEditProfile(!isActiveEditProfile)
+    };
+    setButtonLoading(true);
+    onUpdateUser(values, setButtonLoading, setIsActiveEditProfile)
+  };
 
   return (
     <MainBlocks loggedIn={loggedIn} locationProfile={true} isMainPages={true}>
       <main className="profile">
         <div className="profile__wrap">
-          <h2 className="profile__title">{greeting}</h2>
+          <h2 className="profile__title">{`Привет, ${currentUserData.name}!`}</h2>
           <form className="profile__form">
             <fieldset className="profile__form-fieldset">
-              <label class="profile__field">
+              <label className="profile__field">
                 Имя
-                <input class={isActiveEditProfile ? "profile__input profile__input_active" : "profile__input"} id="name-input" type="text" required value={name} disabled={isActiveEditProfile ? false : true}/>
+                <input className={isActiveEditProfile ? "profile__input profile__input_active" : "profile__input"} id="name-input" type="text" name="nameProfile"  minLength={2} value={values.nameProfile || ''} disabled={isActiveEditProfile ? false : true} onChange={handleChange}/>
               </label>
+              {
+                isActiveEditProfile
+                ?
+                <span className="form__text-error">{errors.nameProfile}</span>
+                :
+                <></>
+
+              }
               <div className="profile__form-line"></div>
-              <label class="profile__field">
+              <label className="profile__field">
                 E-mail
-                <input class={isActiveEditProfile ? "profile__input profile__input_active" : "profile__input"} id="email-input" type="email" required value={email} disabled={isActiveEditProfile ? false : true}/>
+                <input className={isActiveEditProfile ? "profile__input profile__input_active" : "profile__input"} id="email-input" type="email" pattern={PATTERN_EMAIL} name="emailProfile" required value={values.emailProfile || ''} disabled={isActiveEditProfile ? false : true} onChange={handleChange}/>
               </label>
+              {
+                isActiveEditProfile
+                ?
+                <span className="form__text-error">{errors.emailProfile}</span>
+                :
+                <></>
+
+              }
             </fieldset>
-            {/* <span class="profile__input-error">При обновлении профиля произошла ошибка.</span> */}
-            {
-              isActiveEditProfile
-              ?
-              <button className="profile__button-saved" onClick={hendlerEditProfile}>Сохранить</button>
+            {isActiveEditProfile ?
+              (
+                buttonLoading
+                ?
+                <div className='loading-btn'>
+                  <img className='loading-btn__img' src={imgLoading} alt='анимация загрузки' />
+                </div>
+                :
+                <>
+                  <span className="profile__input-error">{isProfileResponse}</span>
+                  <button className={isValid ? "profile__button-saved" : "profile__button-saved_disabled"} onClick={hendlerEditProfile} disabled={isValid ? false : true}>Сохранить</button>
+                </>
+              )
               :
-              <button className="profile__button" onClick={hendlerEditProfile}>Редактировать</button>
+              <>
+                <span className="profile__input-res">{isProfileResponse}</span>
+                <button className="profile__button" onClick={hendlerEditProfile}>Редактировать</button>
+              </>
             }
           </form>
-          <Link to={"/"} className="profile__link">Выйти из аккаунта</Link>
+          <button onClick={signOut} className="profile__button-Out">Выйти из аккаунта</button>
         </div>
       </main>
     </MainBlocks>
